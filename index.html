@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/style.css">
+	<title>Виртуальный расклад</title>
+</head>
+<body class="body">
+	<div class="full-wrapper">
+		<div class="chose-date__wrapper">
+			<div class="chose-date_month">
+				<p>Месяц</p>
+				<input type="number" name="choosen-month" id="form-month" oninput="this.value = this.value.slice(0, 2)">
+			</div>
+			<div class="chose-date_month">
+				<p>Год</p>
+				<input type="number" name="choosen-year" id="form-year" oninput="this.value = this.value.slice(0, 4)">
+			</div>
+			<button type="button" class="chose-date_btn">Создать сетку</button>
+		</div>
+		<div class="calendar__wrapper">
+			<div class="calendar__days-names">
+				<div class="calendar__days-name_day">Понедельник</div>
+				<div class="calendar__days-name_day">Вторник</div>
+				<div class="calendar__days-name_day">Среда</div>
+				<div class="calendar__days-name_day">Четверг</div>
+				<div class="calendar__days-name_day">Пятница</div>
+				<div class="calendar__days-name_day">Суббота</div>
+				<div class="calendar__days-name_day">Воскресенье</div>
+			</div>
+			<div class="calendar__dates"></div>
+		</div>
+	</div>
+	<script type="module" src="./js/script.js"></script>
+</body>
+</html>

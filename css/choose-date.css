@@ -1,0 +1,51 @@
+.chose-date__wrapper {
+	padding: 100px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+}
+
+.chose-date__wrapper > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.chose-date__wrapper > div > p {
+	text-align: center;
+	font-size: 48px;
+}
+
+.chose-date__wrapper > div > input {
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 48px;
+	text-align: center;
+}
+
+#form-month {
+	width: 80px;
+}
+
+#form-year {
+	width: 130px;
+}
+
+.chose-date_btn {
+	font-size: 36px;
+	padding: 10px 20px;
+	border: solid 1px black;
+	border-radius: 15px;
+	background-color: #e9e9e9;
+	transition: .3s;
+}
+
+.chose-date_btn:hover {
+	cursor: pointer;
+	background-color: #e2e2e2;	
+}
+
+.chose-date_btn:active {
+	transform: scale(1.1, 1.1);
+}

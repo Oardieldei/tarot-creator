@@ -1,0 +1,43 @@
+:root {
+  --day-size-w: 160px;
+  --day-size-h: 240px;
+}
+
+.calendar__wrapper {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.calendar__days-names {
+	display: flex;
+	justify-content: space-between;
+}
+
+.calendar__days-name_day {
+	padding: 5px;
+	background-color: #fff;
+	width: var(--day-size-w);
+	text-align: center;
+}
+
+.calendar__dates {
+	display: flex;
+	gap: 20px 0;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.calendar__dates_cell {
+	width: var(--day-size-w);
+	min-height: var(--day-size-h);
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+}
+
+.calendar__dates_cell_empty {
+	background-color: transparent;
+}
