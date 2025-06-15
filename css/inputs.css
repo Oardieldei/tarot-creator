@@ -1,0 +1,89 @@
+.days-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	display: none;
+}
+
+.day-input {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 80px 20px 20px;
+	display: none;
+	flex-direction: column;
+	gap: 60px;
+	align-items: center;
+}
+
+.inputs-active {
+	background: #000000dc;
+	display: block;
+}
+
+.day_shown {
+	display: flex;
+}
+
+.day-input__choose-card,
+.day-input__choose-color {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.day-input__choose-card_p,
+.day-input__choose-color_p,
+.day-input__text_p {
+	color: aliceblue;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+}
+
+.days-input input[type='text'],
+.days-input select {
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+.day-input__choose-color select option {
+	color: rgb(184, 189, 194);
+}
+
+.day-input__choose-color select option[value='a10000'] {
+	background-color: #a10000;
+}
+
+.day-input__choose-color select option[value='1c18e6'] {
+	background-color: #1c18e6;
+}
+
+.day-input__choose-color select option[value='ffe922'] {
+	background-color: #ffe922;
+}
+
+.day-input__choose-color select option[value='139202'] {
+	background-color: #139202;
+}
+
+.day-input__choose-color select option[value='b84c04'] {
+	background-color: #b84c04;
+}
+
+.day-input__choose-color select option[value='000000'] {
+	background-color: #000000;
+}
+
+.day-input__choose-color select option[value='616161'] {
+	background-color: #616161;
+}
+
+.day-input__text_p {
+	margin-bottom: 10px;
+}
+
+.day-input__text_full {
+	padding: 5px 10px;
+	border-radius: 10px;
+}

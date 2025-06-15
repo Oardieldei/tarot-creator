@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/style.css">
 	<title>Виртуальный расклад</title>
 </head>
-<body class="body">
+
+<body class="body body_bg-2">
 	<div class="full-wrapper">
 		<div class="chose-date__wrapper">
 			<div class="chose-date_month">
@@ -32,6 +34,42 @@
 			<div class="calendar__dates"></div>
 		</div>
 	</div>
+	<div class="days-input">
+		<div class="day-input day1-input">
+			<div class="day-input__choose-card">
+				<p class="day-input__choose-card_p">Карта:</p>
+				<select id="day1-card-select">
+					<option selected disabled hidden></option>
+					<option value="sa">Старший аркан</option>
+					<option value="kubkov">Кубков</option>
+					<option value="mechei">Мечей</option>
+					<option value="pentaklei">Пентаклей</option>
+					<option value="zhezlov">Жезлов</option>
+				</select>
+				<select id="day1-card-select-2">
+				</select>
+			</div>
+			<div class="day-input__choose-color">
+				<p class="day-input__choose-color_p">Цвет:</p>
+				<select id="day1-color-select">
+					<option selected disabled hidden></option>
+					<option value="a10000">Красный</option>
+					<option value="ffe922">Желтый</option>
+					<option value="139202">Зеленый</option>
+					<option value="1c18e6">Синий</option>
+					<option value="b84c04">Оранжевый</option>
+					<option value="000000">Черный</option>
+					<option value="616161">Серый</option>
+				</select>
+				<input type="text" class="day-input__choose-color_info" placeholder="Значение (не обязательно)">
+			</div>
+			<div class="day-input__text">
+				<p class="day-input__text_p">Текст:</p>
+				<textarea name="day-input__text_full" id="day-input__text_full" cols="70" rows="20" class="day-input__text_full"></textarea>
+			</div>
+		</div>
+	</div>
 	<script type="module" src="./js/script.js"></script>
 </body>
+
 </html>
