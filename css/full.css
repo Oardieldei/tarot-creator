@@ -17,3 +17,7 @@
 	flex-direction: column;
 	gap: 100px;
 }
+
+button:hover {
+	cursor: pointer;
+}
