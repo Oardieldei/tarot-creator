@@ -180,7 +180,7 @@ const createFormForDay = (index) => {
 	dayInputTextarea.setAttribute('name', 'day-input__text_full')
 	dayInputTextarea.setAttribute('id', 'day-input__text_full')
 	dayInputTextarea.setAttribute('cols', '70')
-	dayInputTextarea.setAttribute('rows', '20')	
+	dayInputTextarea.setAttribute('rows', '20')
 	dayInputText.append(dayInputTextarea)
 
 	const dayInputBtns = document.createElement('div')
@@ -196,6 +196,14 @@ const createFormForDay = (index) => {
 	saveBtn.setAttribute('type', 'button')
 	saveBtn.innerText = 'Сохранить'
 	dayInputBtns.append(saveBtn)
+
+	cancelBtn.addEventListener('click', () => {
+		chooseCardSelectFirst.value = ''
+		chooseCardSelectSecond.innerHTML = ''
+		chooseColorSelect.value = ''
+		chooseColorDescription.value = ''
+		dayInputTextarea.value = ''
+	})
 }
 
 const createEmptyCellForDay = () => {
