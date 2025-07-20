@@ -15,7 +15,7 @@
 				<p>Месяц</p>
 				<input type="number" name="choosen-month" id="form-month" oninput="this.value = this.value.slice(0, 2)">
 			</div>
-			<div class="chose-date_month">
+			<div class="chose-date_year">
 				<p>Год</p>
 				<input type="number" name="choosen-year" id="form-year" oninput="this.value = this.value.slice(0, 4)">
 			</div>
@@ -33,7 +33,9 @@
 			</div>
 			<div class="calendar__dates"></div>
 		</div>
-		<div class="calendar-controls"></div>
+		<div class="save-btn__wrapper">
+			<button type="button" class="save-btn">Сохранить в файл</button>
+		</div>
 	</div>
 	<div class="days-input">
 	</div>

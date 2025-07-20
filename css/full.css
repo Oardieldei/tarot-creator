@@ -1,7 +1,3 @@
-.body {
-	position: relative;
-}
-
 body.body_bg {
 	background-image: url('../img/bg-top.png'),
                     url('../img/bg-bottom.png'),
@@ -10,6 +6,7 @@ body.body_bg {
 	background-repeat: no-repeat, no-repeat, repeat;
 	background-size: 100% auto, 100% auto, auto;
 	position: relative;
+	min-height: 100vh;
 }
 
 body::before {
@@ -32,6 +29,7 @@ body::before {
 	display: flex;
 	flex-direction: column;
 	gap: 100px;
+	background: #fcfcfc6b;
 }
 
 button:hover {

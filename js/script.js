@@ -162,7 +162,7 @@ const createFormForDay = (index) => {
 	newFullForm.append(chooseColor)
 
 	const chooseColorText = document.createElement('p')
-	chooseColorText.classList.add('day-input__choose-Color_p')
+	chooseColorText.classList.add('day-input__choose-color_p')
 	chooseColorText.innerText = 'Цвет: '
 	chooseColor.append(chooseColorText)
 
@@ -299,4 +299,71 @@ choosenDateBtn.addEventListener('click', () => {
 		choosenMonthInput.value = ''
 		choosenYearInput.value = ''
 	}
+})
+
+const saveBtnGlobal = document.querySelector('.save-btn')
+
+saveBtnGlobal.addEventListener('click', () => {
+  const month = choosenMonthInput.value
+  const year = choosenYearInput.value
+
+  const allForms = document.querySelectorAll('.day-input')
+  const data = {
+    month,
+    year,
+    days: []
+  }
+
+  for (let i = 0; i < allForms.length; i++) {
+    const dayNumber = i + 1
+
+    const cardTypeSelect = allForms[i].querySelector('select[class*="-card-select"]:not([class*="-card-select-2"])')
+    const cardNameSelect = allForms[i].querySelector(`select[class*="-card-select-2"]`)
+    const colorSelect = allForms[i].querySelector(`select[class*="-color-select"]`)
+    const textArea = allForms[i].querySelector('textarea')
+
+    const cardType = cardTypeSelect.value
+    const cardName = cardNameSelect.value
+    const color = colorSelect.value
+    const text = textArea.value.trim()
+
+    if (!cardType) {
+      alert(`День ${dayNumber}: выберите тип карты!`)
+      cardTypeSelect.focus()
+      return
+    }
+    if (!cardName) {
+      alert(`День ${dayNumber}: выберите карту!`)
+      cardNameSelect.focus()
+      return
+    }
+    if (!color) {
+      alert(`День ${dayNumber}: выберите цвет!`)
+      colorSelect.focus()
+      return
+    }
+    if (text === '') {
+      alert(`День ${dayNumber}: введите текст!`)
+      textArea.focus()
+      return
+    }
+
+    data.days.push({
+      day: dayNumber,
+      cardType,
+      cardName,
+      color,
+      description: allForms[i].querySelector('input[type="text"]').value.trim(),
+      text
+    })
+  }
+
+  const json = JSON.stringify(data, null, 2)
+  const blob = new Blob([json], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `calendar-${year}-${month}.json`
+  a.click()
+  URL.revokeObjectURL(url)
 })

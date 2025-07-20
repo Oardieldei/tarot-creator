@@ -58,3 +58,8 @@
 	text-align: center;
 	padding: 3px 0;
 }
+
+.save-btn__wrapper {
+	display: flex;
+	justify-content: center;
+}
