@@ -36,8 +36,25 @@
 	background-color: #ffffff;
 	display: flex;
 	flex-direction: column;
+	transition: .3s;
+	border-radius: 5px;
+}
+
+.calendar__dates_cell:hover {
+	cursor: pointer;
+	background-color: #e9e9e9b2;
 }
 
 .calendar__dates_cell_empty {
 	background-color: transparent;
+}
+
+.calendar__dates_cell_empty:hover {
+	cursor: default;
+	background-color: transparent;
+}
+
+.calendar__dates_cell__info {
+	text-align: center;
+	padding: 3px 0;
 }

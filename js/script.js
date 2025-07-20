@@ -20,7 +20,7 @@ const formSelectColorValues = [
 	{ text: "Синий", value: "1c18e6" },
 	{ text: "Оранжевый", value: "b84c04" },
 	{ text: "Черный", value: "000000" },
-	{ text: "Серый", value: "zhezlov" },
+	{ text: "Серый", value: "616161" },
 ]
 
 const isDateReal = (y, m) => {
@@ -30,7 +30,7 @@ const isDateReal = (y, m) => {
 	return true
 }
 
-const getNumberOfFisrtDay = (y, m) => {
+const getNumberOfFirstDay = (y, m) => {
 	const chosenDate = new Date(y, m - 1)
 	const firstDay = chosenDate.getDay()
 	return firstDay === 0 ? 7 : firstDay
@@ -47,10 +47,30 @@ const getNumberOfLastDay = (y, m) => {
 	return lastDay === 0 ? 7 : lastDay
 }
 
+const hideForm = (index) => {
+	dayFormContainer.classList.remove('inputs-active')
+	const currentForm = dayFormContainer.querySelector(`.day${index}-input`)
+	if (currentForm) {
+		currentForm.classList.remove('day_shown')
+	}
+}
+
+const showForm = (index) => {
+	dayFormContainer.classList.add('inputs-active')
+	const allForms = dayFormContainer.querySelectorAll('.day-input')
+	allForms.forEach(form => form.classList.remove('day_shown'))
+	const currentForm = dayFormContainer.querySelector(`.day${index}-input`)
+	if (currentForm) {
+		currentForm.classList.add('day_shown')
+		currentForm.style.top = window.scrollY + 'px'
+	}
+}
+
 const createFormForDay = (index) => {
 	const newFullForm = document.createElement('div')
 	newFullForm.classList.add('day-input')
 	newFullForm.classList.add(`day${index}-input`)
+	dayFormContainer.append(newFullForm)
 
 	const chooseCard = document.createElement('div')
 	chooseCard.classList.add('day-input__choose-card')
@@ -147,7 +167,7 @@ const createFormForDay = (index) => {
 	chooseColor.append(chooseColorText)
 
 	const chooseColorSelect = document.createElement('select')
-	chooseColorSelect.classList.add(`day${index}-card-select`)
+	chooseColorSelect.classList.add(`day${index}-color-select`)
 	chooseColor.append(chooseColorSelect)
 
 	const chooseColorSelectHiddenOption = document.createElement('option')
@@ -178,7 +198,7 @@ const createFormForDay = (index) => {
 	const dayInputTextarea = document.createElement('textarea')
 	dayInputTextarea.classList.add('day-input__text_full')
 	dayInputTextarea.setAttribute('name', 'day-input__text_full')
-	dayInputTextarea.setAttribute('id', 'day-input__text_full')
+	dayInputTextarea.setAttribute('id', `day${index}-text_full`)
 	dayInputTextarea.setAttribute('cols', '70')
 	dayInputTextarea.setAttribute('rows', '20')
 	dayInputText.append(dayInputTextarea)
@@ -200,9 +220,20 @@ const createFormForDay = (index) => {
 	cancelBtn.addEventListener('click', () => {
 		chooseCardSelectFirst.value = ''
 		chooseCardSelectSecond.innerHTML = ''
+		const hiddenOpt = document.createElement('option')
+		hiddenOpt.selected = true
+		hiddenOpt.disabled = true
+		hiddenOpt.hidden = true
+		chooseCardSelectSecond.append(hiddenOpt)
+		
 		chooseColorSelect.value = ''
 		chooseColorDescription.value = ''
 		dayInputTextarea.value = ''
+		hideForm(index)
+	})
+
+	saveBtn.addEventListener('click', () => {
+		hideForm(index)
 	})
 }
 
@@ -227,10 +258,16 @@ const createCellForDay = (dateNum) => {
 	const newCellCard = document.createElement('div')
 	newCellCard.classList.add('calendar__dates_cell__card')
 	newCell.append(newCellCard)
+
+	createFormForDay(dateNum)
+
+	newCell.addEventListener('click', () => {
+		showForm(dateNum)
+	})
 }
 
 const createEmptyCellsBefore = (y, m) => {
-	for (let i = 0; i < getNumberOfFisrtDay(y, m) - 1; i++) {
+	for (let i = 0; i < getNumberOfFirstDay(y, m) - 1; i++) {
 		createEmptyCellForDay()
 	}
 }
@@ -248,6 +285,8 @@ const createEmptyCellsAfter = (y, m) => {
 }
 
 const createCalendar = (y, m) => {
+	dayFormContainer.innerHTML = ''
+	calendarDates.innerHTML = ''
 	createEmptyCellsBefore(y, m)
 	createCells(y, m)
 	createEmptyCellsAfter(y, m)

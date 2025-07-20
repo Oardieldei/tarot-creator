@@ -2,10 +2,26 @@
 	position: relative;
 }
 
-.body_bg-2 {
-	background: url('../img/bg-top.jpg') top center no-repeat,
-	url('../img/bg-bottom.jpg') bottom center no-repeat;
-	background-size: 100% auto, 100% auto;
+body.body_bg {
+	background-image: url('../img/bg-top.png'),
+                    url('../img/bg-bottom.png'),
+                    url('../img/bg-pattern.png');
+	background-position: top center, bottom center, center center;
+	background-repeat: no-repeat, no-repeat, repeat;
+	background-size: 100% auto, 100% auto, auto;
+	position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.342);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .full-wrapper {
