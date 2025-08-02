@@ -209,7 +209,7 @@ const createFormForDay = (index) => {
 
 	const cancelBtn = document.createElement('button')
 	cancelBtn.setAttribute('type', 'button')
-	cancelBtn.innerText = 'Отменить'
+	cancelBtn.innerText = 'Очистить'
 	dayInputBtns.append(cancelBtn)
 
 	const saveBtn = document.createElement('button')
@@ -225,14 +225,55 @@ const createFormForDay = (index) => {
 		hiddenOpt.disabled = true
 		hiddenOpt.hidden = true
 		chooseCardSelectSecond.append(hiddenOpt)
-		
+
 		chooseColorSelect.value = ''
 		chooseColorDescription.value = ''
 		dayInputTextarea.value = ''
+
+		const dayCell = document.getElementById(`day${index}`)
+		dayCell.style.removeProperty('box-shadow')
+
+		const cardBlock = dayCell.children[1]
+		cardBlock.innerHTML = ''
 		hideForm(index)
 	})
 
 	saveBtn.addEventListener('click', () => {
+		const cardType = chooseCardSelectFirst.value
+		const cardName = chooseCardSelectSecond.value
+		const color = chooseColorSelect.value
+
+		if (!color) {
+			alert(`Нужно выбрать цвет`)
+			return
+		}
+
+		if (!cardName) {
+			alert(`Нужно выбрать карту`)
+			return
+		}
+
+		if (!cardType) {
+			alert(`Нужно выбрать карту`)
+			return
+		}
+
+		const cardPath = (cardType === 'sa')
+			? `./img/cards/${cardName}.jpg`
+			: `./img/cards/${cardType}-${cardName}.jpg`
+
+		const dayCell = document.getElementById(`day${index}`)
+		dayCell.style.boxShadow = `0 0 12px 3px #${color}`
+
+		const cardBlock = dayCell.children[1]
+		cardBlock.innerHTML = ''
+		const img = document.createElement('img')
+		img.src = cardPath
+		img.alt = 'Карта'
+		img.style.maxWidth = '100%'
+		img.style.maxHeight = '100%'
+		cardBlock.appendChild(img)
+
 		hideForm(index)
 	})
 }
@@ -304,66 +345,61 @@ choosenDateBtn.addEventListener('click', () => {
 const saveBtnGlobal = document.querySelector('.save-btn')
 
 saveBtnGlobal.addEventListener('click', () => {
-  const month = choosenMonthInput.value
-  const year = choosenYearInput.value
+	const month = choosenMonthInput.value
+	const year = choosenYearInput.value
 
-  const allForms = document.querySelectorAll('.day-input')
-  const data = {
-    month,
-    year,
-    days: []
-  }
+	const allForms = document.querySelectorAll('.day-input')
+	const data = {
+		month,
+		year,
+		days: []
+	}
 
-  for (let i = 0; i < allForms.length; i++) {
-    const dayNumber = i + 1
+	for (let i = 0; i < allForms.length; i++) {
+		const dayNumber = i + 1
 
-    const cardTypeSelect = allForms[i].querySelector('select[class*="-card-select"]:not([class*="-card-select-2"])')
-    const cardNameSelect = allForms[i].querySelector(`select[class*="-card-select-2"]`)
-    const colorSelect = allForms[i].querySelector(`select[class*="-color-select"]`)
-    const textArea = allForms[i].querySelector('textarea')
+		const cardTypeSelect = allForms[i].querySelector('select[class*="-card-select"]:not([class*="-card-select-2"])')
+		const cardNameSelect = allForms[i].querySelector(`select[class*="-card-select-2"]`)
+		const colorSelect = allForms[i].querySelector(`select[class*="-color-select"]`)
+		const textArea = allForms[i].querySelector('textarea')
 
-    const cardType = cardTypeSelect.value
-    const cardName = cardNameSelect.value
-    const color = colorSelect.value
-    const text = textArea.value.trim()
+		const cardType = cardTypeSelect.value
+		const cardName = cardNameSelect.value
+		const color = colorSelect.value
+		const text = textArea.value.trim()
 
-    if (!cardType) {
-      alert(`День ${dayNumber}: выберите тип карты!`)
-      cardTypeSelect.focus()
-      return
-    }
-    if (!cardName) {
-      alert(`День ${dayNumber}: выберите карту!`)
-      cardNameSelect.focus()
-      return
-    }
-    if (!color) {
-      alert(`День ${dayNumber}: выберите цвет!`)
-      colorSelect.focus()
-      return
-    }
-    if (text === '') {
-      alert(`День ${dayNumber}: введите текст!`)
-      textArea.focus()
-      return
-    }
+		if (!cardType) {
+			alert(`День ${dayNumber}: выберите тип карты!`)
+			cardTypeSelect.focus()
+			return
+		}
+		if (!cardName) {
+			alert(`День ${dayNumber}: выберите карту!`)
+			cardNameSelect.focus()
+			return
+		}
+		if (!color) {
+			alert(`День ${dayNumber}: выберите цвет!`)
+			colorSelect.focus()
+			return
+		}
 
-    data.days.push({
-      day: dayNumber,
-      cardType,
-      cardName,
-      color,
-      description: allForms[i].querySelector('input[type="text"]').value.trim(),
-      text
-    })
-  }
+		data.days.push({
+			day: dayNumber,
+			cardType,
+			cardName,
+			color,
+			description: allForms[i].querySelector('input[type="text"]').value.trim(),
+			text
+		})
+	}
 
-  const json = JSON.stringify(data, null, 2)
-  const blob = new Blob([json], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `calendar-${year}-${month}.json`
-  a.click()
-  URL.revokeObjectURL(url)
+	const json = JSON.stringify(data, null, 2)
+	const blob = new Blob([json], { type: 'application/json' })
+	const url = URL.createObjectURL(blob)
+	const a = document.createElement('a')
+	a.href = url
+	a.download = `calendar-${year}-${month}.json`
+	a.click()
+	URL.revokeObjectURL(url)
 })
