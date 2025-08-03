@@ -20,6 +20,7 @@
 .chose-date > div > p {
 	text-align: center;
 	font-size: 48px;
+	padding-bottom: 20px;
 }
 
 .chose-date > div > input {
@@ -81,4 +82,80 @@
 .chose-theme__title {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 24px;
+}
+
+@media (max-width: 1279px) {
+	.chose-date {
+		gap: 20px;
+	}
+
+	.chose-date > div > p {
+		font-size: 24px;
+		padding-bottom: 10px;
+	}
+
+	.chose-date > div > input {
+		font-size: 24px;
+	}
+
+	#form-month {
+		width: 50px;
+	}
+	
+	#form-year {
+		width: 90px;
+	}
+
+	.chose-date_btn,
+	.save-btn {
+		font-size: 24px;
+	}
+
+	.month-card,
+	.chose-theme {
+		width: 200px;
+		padding-top: 80px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.chose-date > div > p {
+		font-size: 16px;
+		padding-bottom: 5px;
+		font-weight: bold;
+	}
+
+	.chose-date > div > input {
+		font-size: 16px;
+	}
+
+	#form-month {
+		width: 40px;
+	}
+	
+	#form-year {
+		width: 60px;
+	}
+
+	.chose-date_btn,
+	.save-btn {
+		font-size: 16px;
+	}
+
+	.save-btn {
+		margin-bottom: 40px;
+	}
+
+	.month-card,
+	.chose-theme {
+		width: 150px;
+		padding-top: 80px;
+		gap: 10px;
+	}
+
+	.month-card__title,
+	.chose-theme__title {
+		font-size: 16px;
+		font-weight: bold;
+	}
 }

@@ -100,3 +100,31 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 }
+
+@media (max-width: 1279px) {
+	.day-input {
+		max-width: 1024px;
+		padding: 20px;
+		gap: 20px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.day-input {
+		max-width: 768px;
+	}
+
+	.day-input__choose-card_p,
+	.day-input__choose-color_p,
+	.day-input__text_p {
+		font-size: 16px;
+	}
+
+	.days-input input[type='text'],
+	.days-input select,
+	.day-input__text_full,
+	.day-input__btns > button {
+		padding: 2.5px 5px;
+		border-radius: 5px;
+	}
+}

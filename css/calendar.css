@@ -1,6 +1,6 @@
 :root {
   --day-size-w: 160px;
-  --day-size-h: 150px;
+  --day-size-h: 160px;
 }
 
 .calendar__wrapper {
@@ -80,4 +80,45 @@
 	height: 20px;
 	border-radius: 50%;
 	box-shadow: 0 0 7px 5px #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media (max-width: 1279px) {
+	:root {
+		--day-size-w: 130px;
+		--day-size-h: 130px;
+	}
+
+	.calendar__days-name_day {
+		font-size: 12px;
+	}
+
+	.calendar__dates_cell__info{
+		font-size: 12px;
+		width: 16px;
+		height: 16px;
+	}
+}
+
+@media (max-width: 1023px) {
+	:root {
+		--day-size-w: 95px;
+		--day-size-h: 95px;
+	}
+
+	.calendar__days-name_day {
+		font-size: 12px;
+	}
+
+	.calendar__dates {
+		gap: 10px 0;
+	}
+
+	.calendar__dates_cell__info{
+		font-size: 12px;
+		width: 16px;
+		height: 16px;
+	}
 }
