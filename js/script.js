@@ -61,10 +61,22 @@ const showForm = (index) => {
 	dayFormContainer.classList.add('inputs-active')
 	const allForms = dayFormContainer.querySelectorAll('.day-input')
 	allForms.forEach(form => form.classList.remove('day_shown'))
+
 	const currentForm = dayFormContainer.querySelector(`.day${index}-input`)
 	if (currentForm) {
 		currentForm.classList.add('day_shown')
-		currentForm.style.top = window.scrollY + 'px'
+
+		currentForm.style.top = '0px'
+		const formHeight = currentForm.offsetHeight
+		const scrollY = window.scrollY
+		const windowHeight = window.innerHeight
+
+		if (scrollY + formHeight > scrollY + windowHeight) {
+			const adjustedTop = Math.max(0, scrollY + windowHeight - formHeight)
+			currentForm.style.top = adjustedTop + 'px'
+		} else {
+			currentForm.style.top = scrollY + 'px'
+		}
 	}
 }
 
@@ -201,8 +213,6 @@ const createFormForDay = (index) => {
 	dayInputTextarea.classList.add('day-input__text_full')
 	dayInputTextarea.setAttribute('name', 'day-input__text_full')
 	dayInputTextarea.setAttribute('id', `day${index}-text_full`)
-	dayInputTextarea.setAttribute('cols', '70')
-	dayInputTextarea.setAttribute('rows', '20')
 	dayInputText.append(dayInputTextarea)
 
 	const dayInputBtns = document.createElement('div')
@@ -272,7 +282,7 @@ const createFormForDay = (index) => {
 		const img = document.createElement('img')
 		img.src = cardPath
 		img.alt = 'Карта'
-		img.style.maxWidth = '100%'
+		img.style.width = '100%'
 		img.style.maxHeight = '100%'
 		cardBlock.appendChild(img)
 
@@ -290,6 +300,7 @@ const createEmptyCellForDay = () => {
 const createCellForDay = (dateNum) => {
 	const newCell = document.createElement('div')
 	newCell.classList.add('calendar__dates_cell')
+	if (dateNum < 10) newCell.classList.add('calendar__dates_cell__short_date')
 	newCell.id = `day${dateNum}`
 	calendarDates.append(newCell)
 
@@ -352,7 +363,7 @@ saveBtnGlobal.addEventListener('click', () => {
 	const monthCardType = monthCardSelect.value
 	const monthCardName = monthCardSelect2.value
 	const allForms = document.querySelectorAll('.day-input')
-	
+
 	const data = {
 		month: choosenMonthInput.value,
 		year: choosenYearInput.value,

@@ -56,11 +56,6 @@
 	background-color: transparent;
 }
 
-.calendar__dates_cell__info {
-	text-align: center;
-	padding: 3px 0;
-}
-
 .save-btn__wrapper {
 	display: flex;
 	justify-content: center;
@@ -108,10 +103,6 @@
 		--day-size-h: 95px;
 	}
 
-	.calendar__days-name_day {
-		font-size: 12px;
-	}
-
 	.calendar__dates {
 		gap: 10px 0;
 	}
@@ -120,5 +111,119 @@
 		font-size: 12px;
 		width: 16px;
 		height: 16px;
+	}
+}
+
+@media (max-width: 767px) {
+	:root {
+		--day-size-w: 70px;
+		--day-size-h: 70px;
+	}
+
+	.calendar__days-name_day {
+		font-size: 10px;
+	}
+
+	.calendar__dates_cell__info{
+		font-size: 9px;
+		width: 12px;
+		height: 12px;
+		top: 5px;
+		left: 5px;
+		box-shadow: 0 0 4px 3px #ffffff;
+	}
+
+	.calendar__dates_cell,
+	.calendar__dates_cell__card {
+		border-radius: 5px;
+	}
+}
+
+@media (max-width: 599px) {
+	.calendar__dates_cell {
+		padding-left: 60px;
+		width: 100%;
+		min-height: 300px;
+	}
+
+	.calendar__dates {
+		gap: 20px 0;
+	}
+
+	.calendar__wrapper {
+		padding-top: 40px;
+	}
+
+	.calendar__dates_cell_empty,
+	.calendar__days-names {
+		display: none;
+	}
+
+	.calendar__dates_cell,
+	.calendar__dates_cell__card {
+		border-radius: 20px;
+	}
+
+	.calendar__dates_cell__info {
+		top: 16px;
+		left: 12px;
+		width: 36px;
+		height: 36px;
+		box-shadow: none;
+		font-size: 36px;
+		border-radius: 0;
+		background: transparent;
+	}
+
+	.save-btn__wrapper {
+		margin-top: 40px;
+	}
+
+	.calendar__dates_cell::after {
+		position: absolute;
+		left: 12px;
+		width: 36px;
+		transform: rotate(270deg);
+		text-align: center;
+		font-size: 32px;
+	}
+
+	.calendar__dates_cell__short_date::after {
+		left: 9px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+1)::after {
+		content: 'Понедельник';
+		top: 235px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+2)::after {
+		content: 'Вторник';
+		top: 156px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+3)::after {
+		content: 'Среда';
+		top: 129px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+4)::after {
+		content: 'Четверг';
+		top: 158px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+5)::after {
+		content: 'Пятница';
+		top: 165px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+6)::after {
+		content: 'Суббота';
+		top: 164px;
+	}
+
+	.calendar__dates_cell:nth-child(7n+7)::after {
+		content: 'Воскресенье';
+		top: 230px;
 	}
 }
