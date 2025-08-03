@@ -1,9 +1,11 @@
 const calendarDates = document.querySelector('.calendar__dates')
-const choosenDate = document.querySelector('.chose-date__wrapper')
+const choosenDate = document.querySelector('.chose-date')
 const choosenMonthInput = choosenDate.children[0].children[1]
 const choosenYearInput = choosenDate.children[1].children[1]
 const choosenDateBtn = choosenDate.children[2]
 const dayFormContainer = document.querySelector('.days-input')
+const monthCardSelect = document.querySelector('.month-card-select')
+const monthCardSelect2 = document.querySelector('.month-card-select-2')
 
 const formSelectFirstValues = [
 	{ text: "Старший аркан", value: "sa" },
@@ -347,11 +349,17 @@ const saveBtnGlobal = document.querySelector('.save-btn')
 saveBtnGlobal.addEventListener('click', () => {
 	const month = choosenMonthInput.value
 	const year = choosenYearInput.value
-
+	const monthCardType = monthCardSelect.value
+	const monthCardName = monthCardSelect2.value
 	const allForms = document.querySelectorAll('.day-input')
+	
 	const data = {
-		month,
-		year,
+		month: choosenMonthInput.value,
+		year: choosenYearInput.value,
+		monthCard: {
+			cardType: monthCardType,
+			cardName: monthCardName
+		},
 		days: []
 	}
 
@@ -402,4 +410,58 @@ saveBtnGlobal.addEventListener('click', () => {
 	a.download = `calendar-${year}-${month}.json`
 	a.click()
 	URL.revokeObjectURL(url)
+})
+
+monthCardSelect.addEventListener('change', () => {
+	monthCardSelect2.innerHTML = ''
+
+	const saValues = [
+		{ text: "Шут (Дурак)", value: "00-Shut" },
+		{ text: "Маг", value: "01-Mag" },
+		{ text: "Жрица", value: "02-Zhrica" },
+		{ text: "Императрица", value: "03-Imperatrica" },
+		{ text: "Император", value: "04-Imperator" },
+		{ text: "Жрец", value: "05-Zhrec" },
+		{ text: "Влюбленные", value: "06-Vljublennye" },
+		{ text: "Колесница", value: "07-Kolesnica" },
+		{ text: "Справедливость", value: "08-Spravedlivost" },
+		{ text: "Отшельник", value: "09-Otshelnik" },
+		{ text: "Колесо фортуны", value: "10-Koleso-Fortuny" },
+		{ text: "Сила", value: "11-Sila" },
+		{ text: "Повешенный", value: "12-Poveshennyj" },
+		{ text: "Смерть", value: "13-Smert" },
+		{ text: "Умеренность", value: "14-Umerennost" },
+		{ text: "Дьявол", value: "15-Diavol" },
+		{ text: "Башня", value: "16-Bashnja" },
+		{ text: "Звезда", value: "17-Zvezda" },
+		{ text: "Луна", value: "18-Luna" },
+		{ text: "Солнце", value: "19-Solnce" },
+		{ text: "Суд", value: "20-Sud" },
+		{ text: "Мир", value: "21-Mir" }
+	]
+
+	const minorValues = [
+		{ text: "Туз", value: "01" },
+		{ text: "2", value: "02" },
+		{ text: "3", value: "03" },
+		{ text: "4", value: "04" },
+		{ text: "5", value: "05" },
+		{ text: "6", value: "06" },
+		{ text: "7", value: "07" },
+		{ text: "8", value: "08" },
+		{ text: "9", value: "09" },
+		{ text: "10", value: "10" },
+		{ text: "Король", value: "korol" },
+		{ text: "Королева", value: "koroleva" },
+		{ text: "Паж", value: "pazh" },
+		{ text: "Рыцарь", value: "rycar" }
+	]
+
+	const selectedType = monthCardSelect.value
+	const options = selectedType === 'sa' ? saValues : minorValues
+
+	options.forEach(opt => {
+		const option = new Option(opt.text, opt.value)
+		monthCardSelect2.appendChild(option)
+	})
 })

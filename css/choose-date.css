@@ -1,4 +1,9 @@
 .chose-date__wrapper {
+	display: flex;
+	justify-content: space-around;
+}
+
+.chose-date {
 	padding: 40px 0;
 	display: flex;
 	flex-direction: column;
@@ -6,18 +11,18 @@
 	gap: 40px;
 }
 
-.chose-date__wrapper > div {
+.chose-date > div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.chose-date__wrapper > div > p {
+.chose-date > div > p {
 	text-align: center;
 	font-size: 48px;
 }
 
-.chose-date__wrapper > div > input {
+.chose-date > div > input {
 	padding: 5px 10px;
 	border-radius: 10px;
 	font-size: 48px;
@@ -52,4 +57,28 @@
 .chose-date_btn:active,
 .save-btn:active {
 	transform: scale(1.1, 1.1);
+}
+
+.month-card,
+.chose-theme {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	align-items: center;
+	padding-top: 120px;
+	gap: 20px;
+}
+
+.month-card select,
+.chose-theme select {
+	padding: 5px 10px;
+	border-radius: 10px;
+	width: 100%;
+	border: 1px solid black;
+}
+
+.month-card__title,
+.chose-theme__title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
 }
