@@ -1,4 +1,9 @@
 .chose-date__wrapper {
+	display: flex;
+	justify-content: space-around;
+}
+
+.chose-date {
 	padding: 40px 0;
 	display: flex;
 	flex-direction: column;
@@ -6,18 +11,19 @@
 	gap: 40px;
 }
 
-.chose-date__wrapper > div {
+.chose-date > div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.chose-date__wrapper > div > p {
+.chose-date > div > p {
 	text-align: center;
 	font-size: 48px;
+	padding-bottom: 20px;
 }
 
-.chose-date__wrapper > div > input {
+.chose-date > div > input {
 	padding: 5px 10px;
 	border-radius: 10px;
 	font-size: 48px;
@@ -52,4 +58,134 @@
 .chose-date_btn:active,
 .save-btn:active {
 	transform: scale(1.1, 1.1);
+}
+
+.month-card,
+.chose-theme {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	align-items: center;
+	padding-top: 120px;
+	gap: 20px;
+}
+
+.month-card select,
+.chose-theme select {
+	padding: 5px 10px;
+	border-radius: 10px;
+	width: 100%;
+	border: 1px solid black;
+}
+
+.month-card__title,
+.chose-theme__title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+}
+
+@media (max-width: 1279px) {
+	.chose-date {
+		gap: 20px;
+	}
+
+	.chose-date > div > p {
+		font-size: 24px;
+		padding-bottom: 10px;
+	}
+
+	.chose-date > div > input {
+		font-size: 24px;
+	}
+
+	#form-month {
+		width: 50px;
+	}
+	
+	#form-year {
+		width: 90px;
+	}
+
+	.chose-date_btn,
+	.save-btn {
+		font-size: 24px;
+	}
+
+	.month-card,
+	.chose-theme {
+		width: 200px;
+		padding-top: 80px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.chose-date > div > p {
+		font-size: 16px;
+		padding-bottom: 5px;
+		font-weight: bold;
+	}
+
+	.chose-date > div > input {
+		font-size: 16px;
+	}
+
+	#form-month {
+		width: 40px;
+	}
+	
+	#form-year {
+		width: 60px;
+	}
+
+	.chose-date_btn,
+	.save-btn {
+		font-size: 16px;
+	}
+
+	.save-btn {
+		margin-bottom: 40px;
+	}
+
+	.month-card,
+	.chose-theme {
+		width: 150px;
+		padding-top: 40px;
+		gap: 10px;
+	}
+
+	.month-card__title,
+	.chose-theme__title {
+		font-size: 16px;
+		font-weight: bold;
+	}
+}
+
+@media (max-width: 599px) {
+	.chose-date__wrapper {
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 20px;
+		gap: 20px;
+	}
+
+	.chose-date {
+		padding: 10px 0;
+		gap: 10px;
+	}
+
+	.month-card,
+	.chose-theme {
+		padding-top: 0;
+	}
+
+	#form-month,
+	#form-year,
+	.chose-date_btn,
+	.save-btn,
+	.month-card,
+	.chose-theme,
+	.chose-date {
+		width: 100%;
+	}
 }

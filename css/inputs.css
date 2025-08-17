@@ -5,6 +5,7 @@
 	width: 100%;
 	min-height: 100%;
 	display: none;
+	z-index: 999;
 }
 
 .day-input {
@@ -41,6 +42,8 @@
 	color: aliceblue;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 24px;
+	display: flex;
+	align-items: center;
 }
 
 .days-input input[type='text'],
@@ -99,4 +102,88 @@
 .day-input__btns > button {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
+}
+
+.day-input__text_full {
+	width: 450px;
+	height: 250px;
+}
+
+@media (max-width: 1279px) {
+	.day-input {
+		max-width: 1024px;
+		padding: 20px;
+		gap: 20px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.day-input {
+		max-width: 768px;
+	}
+
+	.day-input__choose-card_p,
+	.day-input__choose-color_p,
+	.day-input__text_p {
+		font-size: 16px;
+	}
+
+	.days-input input[type='text'],
+	.days-input select,
+	.day-input__text_full,
+	.day-input__btns > button {
+		padding: 2.5px 5px;
+		border-radius: 5px;
+	}
+
+	.day-input__text_full {
+		width: 600px;
+		height: 350px;
+	}
+}
+
+@media (max-width: 767px) {
+	.day-input {
+		max-width: 600px;
+	}
+
+	.day-input__choose-card_p,
+	.day-input__choose-color_p,
+	.day-input__text_p {
+		font-size: 12px;
+	}
+
+	.days-input input[type='text'],
+	.days-input select,
+	.day-input__text_full,
+	.day-input__btns > button {
+		padding: 2.5px 5px;
+		border-radius: 5px;
+		font-size: 12px;
+	}
+
+	.day-input__text_full {
+		width: 450px;
+		height: 250px;
+	}
+}
+
+@media (max-width: 599px) {
+	.day-input {
+		width: 100%;
+	}
+
+	.day-input__text_full {
+		width: calc(100vw - 45px);
+		height: 250px;
+	}
+}
+
+@media (max-width: 399px) {
+ .day-input__choose-card,
+ .day-input__choose-color {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+ }
 }

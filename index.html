@@ -11,15 +11,61 @@
 <body class="body body_bg">
 	<div class="full-wrapper">
 		<div class="chose-date__wrapper">
-			<div class="chose-date_month">
-				<p>Месяц</p>
-				<input type="number" name="choosen-month" id="form-month" oninput="this.value = this.value.slice(0, 2)">
+			<div class="month-card">
+				<p class="month-card__title">Карта месяца</p>
+				<select class="month-card-select">
+					<option value="sa" selected>Старший аркан</option>
+					<option value="kubkov">Кубков</option>
+					<option value="mechei">Мечей</option>
+					<option value="pentaklei">Пентаклей</option>
+					<option value="zhezlov">Жезлов</option>
+				</select>
+				<select class="month-card-select-2">
+					<option value="00-Shut" selected>Шут (Дурак)</option>
+					<option value="01-Mag">Маг</option>
+					<option value="02-Zhrica">Жрица</option>
+					<option value="03-Imperatrica">Императрица</option>
+					<option value="04-Imperator">Император</option>
+					<option value="05-Zhrec">Жрец</option>
+					<option value="06-Vljublennye">Влюбленные</option>
+					<option value="07-Kolesnica">Колесница</option>
+					<option value="08-Spravedlivost">Справедливость</option>
+					<option value="09-Otshelnik">Отшельник</option>
+					<option value="10-Koleso-Fortuny">Колесо фортуны</option>
+					<option value="11-Sila">Сила</option>
+					<option value="12-Poveshennyj">Повешенный</option>
+					<option value="13-Smert">Смерть</option>
+					<option value="14-Umerennost">Умеренность</option>
+					<option value="15-Diavol">Дьявол</option>
+					<option value="16-Bashnja">Башня</option>
+					<option value="17-Zvezda">Звезда</option>
+					<option value="18-Luna">Луна</option>
+					<option value="19-Solnce">Солнце</option>
+					<option value="20-Sud">Суд</option>
+					<option value="21-Mir">Мир</option>
+				</select>
 			</div>
-			<div class="chose-date_year">
-				<p>Год</p>
-				<input type="number" name="choosen-year" id="form-year" oninput="this.value = this.value.slice(0, 4)">
+			<div class="chose-date">
+				<div class="chose-date_month">
+					<p>Месяц</p>
+					<input type="number" name="choosen-month" id="form-month" oninput="this.value = this.value.slice(0, 2)">
+				</div>
+				<div class="chose-date_year">
+					<p>Год</p>
+					<input type="number" name="choosen-year" id="form-year" oninput="this.value = this.value.slice(0, 4)">
+				</div>
+				<button type="button" class="chose-date_btn">Создать сетку</button>
 			</div>
-			<button type="button" class="chose-date_btn">Создать сетку</button>
+			<div class="chose-theme">
+				<p class="chose-theme__title">Выбор темы</p>
+				<select class="chose-theme-select">
+					<option value="test1" selected>Тут пока пусто</option>
+					<option value="test2">Тут пока пусто</option>
+					<option value="test3">Тут пока пусто</option>
+					<option value="test4">Тут пока пусто</option>
+					<option value="test5">Тут пока пусто</option>
+				</select>
+			</div>
 		</div>
 		<div class="calendar__wrapper">
 			<div class="calendar__days-names">
@@ -35,6 +81,20 @@
 		</div>
 		<div class="save-btn__wrapper">
 			<button type="button" class="save-btn">Сохранить в файл</button>
+		</div>
+	</div>
+	<div class="what-day">
+		<div id="what-day__wrapper" class="what-day" data-state="closed">
+			<button type="button" class="what-day__toggle" title="Открыть выбор дня">
+				<span class="what-day__chevron">&lt;</span>
+			</button>
+			<div id="what-day-panel" class="what-day__panel">
+				<label for="wday-input" class="what-day__label">Выбрать день:</label>
+				<input id="wday-input" class="what-day__input" type="number" inputmode="numeric" name="wday">
+				<button type="button" class="what-day__btn" title="Подобрать">
+					<img class="what-day__btn_img" src="./img/magic-wand.png" alt="Волшебная палочка">
+				</button>
+			</div>
 		</div>
 	</div>
 	<div class="days-input">
