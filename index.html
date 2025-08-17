@@ -83,6 +83,20 @@
 			<button type="button" class="save-btn">Сохранить в файл</button>
 		</div>
 	</div>
+	<div class="what-day">
+		<div id="what-day__wrapper" class="what-day" data-state="closed">
+			<button type="button" class="what-day__toggle" title="Открыть выбор дня">
+				<span class="what-day__chevron">&lt;</span>
+			</button>
+			<div id="what-day-panel" class="what-day__panel">
+				<label for="wday-input" class="what-day__label">Выбрать день:</label>
+				<input id="wday-input" class="what-day__input" type="number" inputmode="numeric" name="wday">
+				<button type="button" class="what-day__btn" title="Подобрать">
+					<img class="what-day__btn_img" src="./img/magic-wand.png" alt="Волшебная палочка">
+				</button>
+			</div>
+		</div>
+	</div>
 	<div class="days-input">
 	</div>
 	<script type="module" src="./js/script.js"></script>
