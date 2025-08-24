@@ -4,23 +4,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Poiret+One&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./css/style.css">
 	<title>Виртуальный расклад</title>
 </head>
 
-<body class="body body_bg">
+<body class="body theme__cards-big">
 	<div class="full-wrapper">
 		<div class="chose-date__wrapper">
 			<div class="month-card">
 				<p class="month-card__title">Карта месяца</p>
-				<select class="month-card-select">
+				<select class="month-card-select" id="month-card-select-id">
 					<option value="sa" selected>Старший аркан</option>
 					<option value="kubkov">Кубков</option>
 					<option value="mechei">Мечей</option>
 					<option value="pentaklei">Пентаклей</option>
 					<option value="zhezlov">Жезлов</option>
 				</select>
-				<select class="month-card-select-2">
+				<select class="month-card-select-2" id="month-card-select-2-id">
 					<option value="00-Shut" selected>Шут (Дурак)</option>
 					<option value="01-Mag">Маг</option>
 					<option value="02-Zhrica">Жрица</option>
@@ -58,12 +61,13 @@
 			</div>
 			<div class="chose-theme">
 				<p class="chose-theme__title">Выбор темы</p>
-				<select class="chose-theme-select">
-					<option value="test1" selected>Тут пока пусто</option>
-					<option value="test2">Тут пока пусто</option>
-					<option value="test3">Тут пока пусто</option>
-					<option value="test4">Тут пока пусто</option>
-					<option value="test5">Тут пока пусто</option>
+				<select class="chose-theme-select" id="chose-theme-select-id">
+					<option value="cards-big" selected>Карты (большие)</option>
+					<option value="cards-coffee">Карты с кофе</option>
+					<option value="cards-deck">Карты (колода)</option>
+					<option value="cards-table">Расклад</option>
+					<option value="meditation">Медитация (фиолетовый)</option>
+					<option value="meditation-blue">Медитация (синий)</option>
 				</select>
 			</div>
 		</div>

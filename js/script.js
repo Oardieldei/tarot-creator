@@ -6,6 +6,8 @@ const choosenDateBtn = choosenDate.children[2]
 const dayFormContainer = document.querySelector('.days-input')
 const monthCardSelect = document.querySelector('.month-card-select')
 const monthCardSelect2 = document.querySelector('.month-card-select-2')
+const bodyItem = document.querySelector('.body')
+const choseThemeSelect = document.querySelector('.chose-theme-select')
 
 const formSelectFirstValues = [
 	{ text: "Старший аркан", value: "sa" },
@@ -371,7 +373,8 @@ saveBtnGlobal.addEventListener('click', () => {
 			cardType: monthCardType,
 			cardName: monthCardName
 		},
-		days: []
+		days: [],
+		theme: choseThemeSelect.value,
 	}
 
 	for (let i = 0; i < allForms.length; i++) {
@@ -506,4 +509,15 @@ wdayBtn.addEventListener('click', () => {
   } else {
     wdayInput.value = ""
   }
+})
+
+const themesRemove = () => {
+	const classesToRemove = Array.from(bodyItem.classList)
+    .filter(cls => cls.startsWith('theme__'))
+  classesToRemove.forEach(cls => bodyItem.classList.remove(cls))
+}
+
+choseThemeSelect.addEventListener('change', () => {
+	themesRemove()
+	bodyItem.classList.add(`theme__${choseThemeSelect.value}`)
 })

@@ -18,9 +18,10 @@
 
 .calendar__days-name_day {
 	padding: 5px;
-	background-color: #fff;
 	width: var(--day-size-w);
 	text-align: center;
+	font-family: "Poiret One", sans-serif;
+	font-size: 24px;
 }
 
 .calendar__dates {
@@ -39,16 +40,17 @@
 	border-radius: 8px;
 	overflow: hidden;
 	position: relative;
+	background: #fcfcfc49;
 }
 
 .calendar__dates_cell:hover {
-	cursor: pointer;
-	background-color: #e9e9e9b2;
+	cursor: pointer;	
 	transform: scale(1.04, 1.04);
+	background-color: #e9e9e9b2;
 }
 
 .calendar__dates_cell_empty {
-	background-color: transparent;
+	background-color: transparent !important;
 }
 
 .calendar__dates_cell_empty:hover {
@@ -78,6 +80,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-family: "Poiret One", sans-serif;
 }
 
 @media (max-width: 1279px) {
@@ -87,7 +90,7 @@
 	}
 
 	.calendar__days-name_day {
-		font-size: 12px;
+		font-size: 20px;
 	}
 
 	.calendar__dates_cell__info{
@@ -112,12 +115,16 @@
 		width: 16px;
 		height: 16px;
 	}
+
+	.calendar__days-name_day {
+		font-size: 15px;
+	}
 }
 
 @media (max-width: 767px) {
 	:root {
-		--day-size-w: 70px;
-		--day-size-h: 70px;
+		--day-size-w: 72px;
+		--day-size-h: 72px;
 	}
 
 	.calendar__days-name_day {
@@ -186,6 +193,7 @@
 		transform: rotate(270deg);
 		text-align: center;
 		font-size: 32px;
+		font-family: "Marck Script", cursive;
 	}
 
 	.calendar__dates_cell__short_date::after {
@@ -194,7 +202,7 @@
 
 	.calendar__dates_cell:nth-child(7n+1)::after {
 		content: 'Понедельник';
-		top: 235px;
+		top: 200px;
 	}
 
 	.calendar__dates_cell:nth-child(7n+2)::after {
@@ -204,26 +212,26 @@
 
 	.calendar__dates_cell:nth-child(7n+3)::after {
 		content: 'Среда';
-		top: 129px;
+		top: 117px;
 	}
 
 	.calendar__dates_cell:nth-child(7n+4)::after {
 		content: 'Четверг';
-		top: 158px;
+		top: 145px;
 	}
 
 	.calendar__dates_cell:nth-child(7n+5)::after {
 		content: 'Пятница';
-		top: 165px;
+		top: 166px;
 	}
 
 	.calendar__dates_cell:nth-child(7n+6)::after {
 		content: 'Суббота';
-		top: 164px;
+		top: 144px;
 	}
 
 	.calendar__dates_cell:nth-child(7n+7)::after {
 		content: 'Воскресенье';
-		top: 230px;
+		top: 191px;
 	}
 }

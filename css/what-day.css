@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 40px;
   right: 0;
-  display: flex;
+  display: none;
   align-items: center;
   z-index: 998;
   font-family: sans-serif;
@@ -58,7 +58,8 @@
 }
 
 .what-day__label {
-  font-size: 14px;
+  font-size: 18px;
+	font-family: "Poiret One", sans-serif;
 }
 
 .what-day__input {
@@ -90,4 +91,10 @@
 
 #what-day__wrapper[data-state="open"] .what-day__chevron {
   transform: rotate(180deg);
+}
+
+@media (max-width: 599px) {
+	.what-day {
+		display: flex;
+	}
 }

@@ -19,8 +19,9 @@
 
 .chose-date > div > p {
 	text-align: center;
-	font-size: 48px;
+	font-size: 58px;
 	padding-bottom: 20px;
+	font-family: "Marck Script", cursive;
 }
 
 .chose-date > div > input {
@@ -32,11 +33,16 @@
 }
 
 #form-month {
-	width: 80px;
+	width: 90px;
 }
 
 #form-year {
-	width: 130px;
+	width: 170px;	
+}
+
+#form-month,
+#form-year {
+	font-family: "Poiret One", sans-serif;
 }
 
 .chose-date_btn,
@@ -47,6 +53,7 @@
 	border-radius: 15px;
 	background-color: #e9e9e9;
 	transition: .3s;
+	font-family: "Poiret One", sans-serif;
 }
 
 .chose-date_btn:hover,
@@ -78,10 +85,18 @@
 	border: 1px solid black;
 }
 
+.month-card select option,
+.chose-theme select option,
+.month-card select,
+.chose-theme select {
+	font-family: "Poiret One", sans-serif;
+	font-size: 20px;
+}
+
 .month-card__title,
 .chose-theme__title {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 24px;
+	font-family: "Marck Script", cursive;
+	font-size: 30px;
 }
 
 @media (max-width: 1279px) {
@@ -90,7 +105,7 @@
 	}
 
 	.chose-date > div > p {
-		font-size: 24px;
+		font-size: 30px;
 		padding-bottom: 10px;
 	}
 
@@ -126,7 +141,7 @@
 	}
 
 	.chose-date > div > input {
-		font-size: 16px;
+		font-size: 15px;
 	}
 
 	#form-month {
@@ -134,7 +149,7 @@
 	}
 	
 	#form-year {
-		width: 60px;
+		width: 65px;
 	}
 
 	.chose-date_btn,
@@ -154,10 +169,16 @@
 	}
 
 	.month-card__title,
-	.chose-theme__title {
+	.chose-theme__title {		
 		font-size: 16px;
-		font-weight: bold;
 	}
+
+	.month-card select option,
+	.chose-theme select option,
+	.month-card select,
+	.chose-theme select {
+	font-size: 15px;
+}
 }
 
 @media (max-width: 599px) {

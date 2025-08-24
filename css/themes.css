@@ -1,0 +1,96 @@
+.body {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.486);
+  pointer-events: none;
+  z-index: -1;
+}
+
+body.theme__cards-big {
+	background-image: url('../img/themes/cards-big.jpg');
+}
+
+.theme__cards-big .calendar__days-name_day {	
+	text-shadow: 0 0 3px hsl(0, 0%, 66%),
+	0 0 5px hsl(0, 0%, 0%),
+	0 0 4px hsla(0, 0%, 100%, 0.4),
+	6px 6px 4px hsl(12, 66%, 58%),
+	-4px -6px 6px hsl(229, 65%, 56%),
+	0 0 9px hsl(0, 42%, 46%);
+}
+
+body.theme__cards-coffee {
+	background-image: url('../img/themes/cards-coffee.jpg');
+}
+
+.theme__cards-coffee .calendar__days-name_day {	
+	text-shadow: 0 0 3px hsl(0, 0%, 66%),
+	0 0 5px hsl(0, 0%, 0%),
+	0 0 4px hsla(0, 0%, 100%, 0.4),
+	6px 6px 4px hsl(12, 66%, 58%),
+	-4px -6px 6px hsl(0, 14%, 21%),
+	0 0 9px hsl(0, 42%, 46%);
+}
+
+body.theme__cards-deck {
+	background-image: url('../img/themes/cards-deck.jpg');
+}
+
+.theme__cards-deck .calendar__days-name_day {	
+	text-shadow: 0 0 3px hsl(0, 0%, 66%),
+	0 0 5px hsl(0, 0%, 0%),
+	0 0 4px hsla(0, 0%, 100%, 0.4),
+	6px 6px 4px hsl(12, 66%, 58%),
+	-4px -6px 6px hsl(56, 73%, 68%),
+	0 0 9px hsl(0, 42%, 46%);
+}
+
+body.theme__cards-table {
+	background-image: url('../img/themes/cards-table.jpg');
+}
+
+.theme__cards-table .calendar__days-name_day {	
+	text-shadow: 0 0 3px hsl(0, 0%, 66%),
+	0 0 5px hsl(0, 0%, 0%),
+	0 0 4px hsla(0, 0%, 100%, 0.4),
+	6px 6px 4px hsl(36, 45%, 72%),
+	-4px -6px 6px hsl(335, 62%, 65%),
+	0 0 9px hsl(0, 42%, 46%);
+}
+
+body.theme__meditation {
+	background-image: url('../img/themes/meditation.jpg');
+}
+
+.theme__meditation .calendar__days-name_day {	
+	text-shadow: 0 0 3px hsl(0, 0%, 66%),
+	0 0 5px hsl(0, 0%, 0%),
+	0 0 4px hsla(0, 0%, 100%, 0.4),
+	6px 6px 4px hsl(295, 66%, 58%),
+	-4px -6px 6px hsl(229, 65%, 56%),
+	0 0 9px hsl(0, 42%, 46%);
+}
+
+body.theme__meditation-blue {
+	background-image: url('../img/themes/meditation-blue.jpg');
+}
+
+.theme__meditation-blue .calendar__days-name_day {	
+	text-shadow: 0 0 3px hsl(0, 0%, 66%),
+	0 0 5px hsl(0, 0%, 0%),
+	0 0 4px hsla(0, 0%, 100%, 0.4),
+	6px 6px 4px hsl(0, 0%, 100%),
+	-4px -6px 6px hsl(229, 65%, 56%),
+	0 0 9px hsl(236, 51%, 59%);
+}

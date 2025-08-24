@@ -40,7 +40,7 @@
 .day-input__choose-color_p,
 .day-input__text_p {
 	color: aliceblue;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Marck Script", cursive;
 	font-size: 24px;
 	display: flex;
 	align-items: center;
@@ -48,8 +48,15 @@
 
 .days-input input[type='text'],
 .days-input select {
+	font-family: "Poiret One", sans-serif;
+	font-size: 20px;
 	padding: 5px 10px;
 	border-radius: 10px;
+}
+
+.days-input select option {
+	font-family: "Poiret One", sans-serif;
+	font-size: 20px;
 }
 
 .day-input__choose-color select option {
@@ -100,13 +107,15 @@
 }
 
 .day-input__btns > button {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	font-family: "Poiret One", sans-serif;
+	font-size: 20px;
 }
 
 .day-input__text_full {
 	width: 450px;
 	height: 250px;
+	font-family: "Poiret One", sans-serif;
+	font-size: 20px;
 }
 
 @media (max-width: 1279px) {
@@ -150,7 +159,7 @@
 	.day-input__choose-card_p,
 	.day-input__choose-color_p,
 	.day-input__text_p {
-		font-size: 12px;
+		font-size: 18px;
 	}
 
 	.days-input input[type='text'],
@@ -158,8 +167,14 @@
 	.day-input__text_full,
 	.day-input__btns > button {
 		padding: 2.5px 5px;
-		border-radius: 5px;
-		font-size: 12px;
+		border-radius: 5px;		
+	}
+
+	.day-input__text_full,
+	.days-input input[type='text'],
+	.days-input select,
+	.days-input select option {
+		font-size: 15px;
 	}
 
 	.day-input__text_full {
