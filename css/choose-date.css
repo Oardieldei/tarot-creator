@@ -94,7 +94,8 @@
 }
 
 .month-card__title,
-.chose-theme__title {
+.chose-theme__title,
+.chose-deck__title {
 	font-family: "Marck Script", cursive;
 	font-size: 30px;
 }
@@ -169,7 +170,8 @@
 	}
 
 	.month-card__title,
-	.chose-theme__title {		
+	.chose-theme__title,
+	.chose-deck__title {
 		font-size: 16px;
 	}
 

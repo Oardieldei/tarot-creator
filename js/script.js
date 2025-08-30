@@ -8,6 +8,9 @@ const monthCardSelect = document.querySelector('.month-card-select')
 const monthCardSelect2 = document.querySelector('.month-card-select-2')
 const bodyItem = document.querySelector('.body')
 const choseThemeSelect = document.querySelector('.chose-theme-select')
+const choseDeckSelect = document.querySelector('.chose-deck-select')
+
+let currentDeck = '1001-nights'
 
 const formSelectFirstValues = [
 	{ text: "Старший аркан", value: "sa" },
@@ -273,8 +276,8 @@ const createFormForDay = (index) => {
 		}
 
 		const cardPath = (cardType === 'sa')
-			? `./img/cards/${cardName}.jpg`
-			: `./img/cards/${cardType}-${cardName}.jpg`
+			? `./img/cards/${currentDeck}/${cardName}.jpg`
+			: `./img/cards/${currentDeck}/${cardType}-${cardName}.jpg`
 
 		const dayCell = document.getElementById(`day${index}`)
 		dayCell.style.boxShadow = `0 0 12px 3px #${color}`
@@ -375,6 +378,7 @@ saveBtnGlobal.addEventListener('click', () => {
 		},
 		days: [],
 		theme: choseThemeSelect.value,
+		deck: choseDeckSelect.value,
 	}
 
 	for (let i = 0; i < allForms.length; i++) {
@@ -521,3 +525,16 @@ choseThemeSelect.addEventListener('change', () => {
 	themesRemove()
 	bodyItem.classList.add(`theme__${choseThemeSelect.value}`)
 })
+
+choseDeckSelect.addEventListener('change', () => {
+	currentDeck = choseDeckSelect.value
+	changeDeckVision(currentDeck)
+})
+
+const changeDeckVision = (deck) => {
+	document.querySelectorAll('.calendar__dates_cell__card img').forEach(imgEl => {
+    const parts = imgEl.src.split('/')
+    const fileName = parts[parts.length - 1]
+    imgEl.src = `./img/cards/${deck}/${fileName}`
+  })
+}
