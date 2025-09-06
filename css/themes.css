@@ -94,3 +94,9 @@ body.theme__meditation-blue {
 	-4px -6px 6px hsl(229, 65%, 56%),
 	0 0 9px hsl(236, 51%, 59%);
 }
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll; 
+  }
+}
