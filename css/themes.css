@@ -4,7 +4,7 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: var(--app-height);
   background: var(--bg-image) center/cover no-repeat;
   z-index: -2;
 }
@@ -15,13 +15,12 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: var(--app-height);
   background: rgba(255, 255, 255, 0.486);
   pointer-events: none;
   z-index: -1;
 }
 
-/* Темы */
 body.theme__cards-big {
   --bg-image: url('../img/themes/cards-big.jpg');
 }
@@ -46,7 +45,6 @@ body.theme__meditation-blue {
   --bg-image: url('../img/themes/meditation-blue.jpg');
 }
 
-/* Тени текста для каждой темы */
 .theme__cards-big .calendar__days-name_day {	
   text-shadow: 0 0 3px hsl(0, 0%, 66%),
                0 0 5px hsl(0, 0%, 0%),

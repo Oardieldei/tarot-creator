@@ -30,6 +30,13 @@ const formSelectColorValues = [
 	{ text: "Серый", value: "616161" },
 ]
 
+function setAppHeight() {
+  document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+
+window.addEventListener('resize', setAppHeight)
+setAppHeight()
+
 const isDateReal = (y, m) => {
 	if (m != +m || y != +y) return false
 	if (+m < 1 || +m > 12) return false
