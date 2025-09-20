@@ -61,6 +61,18 @@
 .save-btn__wrapper {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+}
+
+.input-text {
+	width: 80%;
+	font-family: "Poiret One", sans-serif;
+	font-size: 20px;
+	padding: 5px 10px;
+	border: solid 1px black;
+	border-radius: 10px;
 }
 
 .calendar__dates_cell__card {
@@ -119,6 +131,11 @@
 	.calendar__days-name_day {
 		font-size: 15px;
 	}
+	
+	.input-text {
+		padding: 2.5px 5px;
+		border-radius: 5px;
+	}
 }
 
 @media (max-width: 767px) {
@@ -143,6 +160,11 @@
 	.calendar__dates_cell,
 	.calendar__dates_cell__card {
 		border-radius: 5px;
+	}
+
+	.input-text {
+		width: 100%;
+		font-size: 15px;
 	}
 }
 

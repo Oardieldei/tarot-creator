@@ -360,7 +360,9 @@ choosenDateBtn.addEventListener('click', () => {
 	}
 })
 
-const saveBtnGlobal = document.querySelector('.save-btn')
+const saveGlobalWrapper = document.querySelector('.save-btn__wrapper')
+const saveBtnGlobal = saveGlobalWrapper.children[1]
+const textIntroItem = saveGlobalWrapper.children[0]
 
 saveBtnGlobal.addEventListener('click', () => {
 	const month = choosenMonthInput.value
@@ -379,6 +381,7 @@ saveBtnGlobal.addEventListener('click', () => {
 		days: [],
 		theme: choseThemeSelect.value,
 		deck: choseDeckSelect.value,
+		introText: textIntroItem.value,
 	}
 
 	for (let i = 0; i < allForms.length; i++) {
