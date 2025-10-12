@@ -1,3 +1,24 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    doc,
+    getDoc
+  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCStY_szTbzOfvlYnq32tqmgPAv-aRHPcQ",
+  authDomain: "tarot-layouts.firebaseapp.com",
+  projectId: "tarot-layouts",
+  storageBucket: "tarot-layouts.firebasestorage.app",
+  messagingSenderId: "698149348927",
+  appId: "1:698149348927:web:7b33f5a55dda914ab6fa8a"
+}
+
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
+
 const calendarDates = document.querySelector('.calendar__dates')
 const choosenDate = document.querySelector('.chose-date')
 const choosenMonthInput = choosenDate.children[0].children[1]
@@ -360,6 +381,14 @@ choosenDateBtn.addEventListener('click', () => {
 	}
 })
 
+async function saveLayout(data) {
+	const docRef = await addDoc(collection(db, "layouts"), data)
+	const layoutId = docRef.id
+	const link = `https://oardieldei.github.io/tarot-viewer/?id=${layoutId}`
+	console.log(`Ссылка на расклад: ${link}`)
+	window.open(link, '_blank')
+}
+
 const saveGlobalWrapper = document.querySelector('.save-btn__wrapper')
 const saveBtnGlobal = saveGlobalWrapper.children[1]
 const textIntroItem = saveGlobalWrapper.children[0]
@@ -423,14 +452,7 @@ saveBtnGlobal.addEventListener('click', () => {
 		})
 	}
 
-	const json = JSON.stringify(data, null, 2)
-	const blob = new Blob([json], { type: 'application/json' })
-	const url = URL.createObjectURL(blob)
-	const a = document.createElement('a')
-	a.href = url
-	a.download = `calendar-${year}-${month}.json`
-	a.click()
-	URL.revokeObjectURL(url)
+	saveLayout(data)
 })
 
 monthCardSelect.addEventListener('change', () => {
@@ -505,23 +527,23 @@ wdayInput.addEventListener("input", () => {
 })
 
 wdayBtn.addEventListener('click', () => {
-  const dayNum = wdayInput.value.trim()
-  if (!dayNum) return
+	const dayNum = wdayInput.value.trim()
+	if (!dayNum) return
 
-  const targetId = `day${dayNum}`
-  const targetEl = document.getElementById(targetId)
+	const targetId = `day${dayNum}`
+	const targetEl = document.getElementById(targetId)
 
-  if (targetEl) {
-    targetEl.scrollIntoView({ behavior: "smooth", block: "center" })
-  } else {
-    wdayInput.value = ""
-  }
+	if (targetEl) {
+		targetEl.scrollIntoView({ behavior: "smooth", block: "center" })
+	} else {
+		wdayInput.value = ""
+	}
 })
 
 const themesRemove = () => {
 	const classesToRemove = Array.from(bodyItem.classList)
-    .filter(cls => cls.startsWith('theme__'))
-  classesToRemove.forEach(cls => bodyItem.classList.remove(cls))
+		.filter(cls => cls.startsWith('theme__'))
+	classesToRemove.forEach(cls => bodyItem.classList.remove(cls))
 }
 
 choseThemeSelect.addEventListener('change', () => {
@@ -536,8 +558,8 @@ choseDeckSelect.addEventListener('change', () => {
 
 const changeDeckVision = (deck) => {
 	document.querySelectorAll('.calendar__dates_cell__card img').forEach(imgEl => {
-    const parts = imgEl.src.split('/')
-    const fileName = parts[parts.length - 1]
-    imgEl.src = `./img/cards/${deck}/${fileName}`
-  })
+		const parts = imgEl.src.split('/')
+		const fileName = parts[parts.length - 1]
+		imgEl.src = `./img/cards/${deck}/${fileName}`
+	})
 }
