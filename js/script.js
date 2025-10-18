@@ -328,6 +328,7 @@ const createFormForDay = (index) => {
 		const dayCell = document.getElementById(`day${index}`)
 		dayCell.style.boxShadow = `0 0 12px 3px #${color}`
 		if (colorTwo) dayCell.children[0].style.boxShadow = `0 0 7px 5px #${colorTwo}`
+		if (colorTwo) dayCell.style.backgroundColor = `#${colorTwo}33`
 
 		const cardBlock = dayCell.children[1]
 		cardBlock.innerHTML = ''
