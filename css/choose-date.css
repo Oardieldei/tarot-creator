@@ -78,7 +78,8 @@
 }
 
 .month-card select,
-.chose-theme select {
+.chose-theme select,
+#form-month {
 	padding: 5px 10px;
 	border-radius: 10px;
 	width: 100%;
@@ -88,7 +89,9 @@
 .month-card select option,
 .chose-theme select option,
 .month-card select,
-.chose-theme select {
+.chose-theme select,
+#form-month,
+#form-month option {
 	font-family: "Poiret One", sans-serif;
 	font-size: 20px;
 }
@@ -112,10 +115,6 @@
 
 	.chose-date > div > input {
 		font-size: 24px;
-	}
-
-	#form-month {
-		width: 50px;
 	}
 	
 	#form-year {
@@ -143,10 +142,6 @@
 
 	.chose-date > div > input {
 		font-size: 15px;
-	}
-
-	#form-month {
-		width: 40px;
 	}
 	
 	#form-year {
@@ -178,7 +173,9 @@
 	.month-card select option,
 	.chose-theme select option,
 	.month-card select,
-	.chose-theme select {
+	.chose-theme select,
+	#form-month,
+	#form-month option {
 	font-size: 15px;
 }
 }

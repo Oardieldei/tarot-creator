@@ -73,6 +73,7 @@
 	padding: 5px 10px;
 	border: solid 1px black;
 	border-radius: 10px;
+	margin: 0 auto;
 }
 
 .calendar__dates_cell__card {

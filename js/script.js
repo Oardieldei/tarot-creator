@@ -51,6 +51,13 @@ const formSelectColorValues = [
 	{ text: "Серый", value: "616161" },
 ]
 
+const changeMonthForTheNext = () => {
+	const nowDate = new Date()
+	const nowMonth = nowDate.getMonth()
+	choosenMonthInput.selectedIndex = nowMonth + 1
+}
+changeMonthForTheNext()
+
 const isDateReal = (y, m) => {
 	if (m != +m || y != +y) return false
 	if (+m < 1 || +m > 12) return false
@@ -390,8 +397,8 @@ async function saveLayout(data) {
 }
 
 const saveGlobalWrapper = document.querySelector('.save-btn__wrapper')
-const saveBtnGlobal = saveGlobalWrapper.children[1]
-const textIntroItem = saveGlobalWrapper.children[0]
+const saveBtnGlobal = saveGlobalWrapper.children[0]
+const textIntroItem = document.querySelector('.input-text')
 
 saveBtnGlobal.addEventListener('click', () => {
 	const month = choosenMonthInput.value
@@ -413,6 +420,8 @@ saveBtnGlobal.addEventListener('click', () => {
 		introText: textIntroItem.value,
 	}
 
+	let isFail = false
+
 	for (let i = 0; i < allForms.length; i++) {
 		const dayNumber = i + 1
 
@@ -429,16 +438,19 @@ saveBtnGlobal.addEventListener('click', () => {
 		if (!cardType) {
 			alert(`День ${dayNumber}: выберите тип карты!`)
 			cardTypeSelect.focus()
+			isFail = true
 			return
 		}
 		if (!cardName) {
 			alert(`День ${dayNumber}: выберите карту!`)
 			cardNameSelect.focus()
+			isFail = true
 			return
 		}
 		if (!color) {
 			alert(`День ${dayNumber}: выберите цвет!`)
 			colorSelect.focus()
+			isFail = true
 			return
 		}
 
@@ -451,8 +463,7 @@ saveBtnGlobal.addEventListener('click', () => {
 			text
 		})
 	}
-
-	saveLayout(data)
+	if (!isFail) saveLayout(data)
 })
 
 monthCardSelect.addEventListener('change', () => {

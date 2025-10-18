@@ -52,13 +52,26 @@
 			<div class="chose-date">
 				<div class="chose-date_month">
 					<p>Месяц</p>
-					<input type="number" name="choosen-month" id="form-month" oninput="this.value = this.value.slice(0, 2)">
+					<select class="chose-month-select" id="form-month">
+						<option value="1" selected>Январь</option>
+						<option value="2">Февраль</option>
+						<option value="3">Март</option>
+						<option value="4">Апрель</option>
+						<option value="5">Май</option>
+						<option value="6">Июнь</option>
+						<option value="7">Июль</option>
+						<option value="8">Август</option>
+						<option value="9">Сентябрь</option>
+						<option value="10">Октябрь</option>
+						<option value="11">Ноябрь</option>
+						<option value="12">Декабрь</option>
+					</select>
 				</div>
 				<div class="chose-date_year">
 					<p>Год</p>
 					<input type="number" name="choosen-year" id="form-year" oninput="this.value = this.value.slice(0, 4)">
 				</div>
-				<button type="button" class="chose-date_btn">Создать сетку</button>
+				<button type="button" class="chose-date_btn">Создать планер</button>
 			</div>
 			<div class="chose-theme">
 				<p class="chose-theme__title">Выбор фона</p>
@@ -83,6 +96,7 @@
 				</select>
 			</div>
 		</div>
+		<input type="text" name="upperText" id="upperText" class="input-text" placeholder="Текст над календарем">
 		<div class="calendar__wrapper">
 			<div class="calendar__days-names">
 				<div class="calendar__days-name_day">Понедельник</div>
@@ -96,7 +110,6 @@
 			<div class="calendar__dates"></div>
 		</div>
 		<div class="save-btn__wrapper">
-			<input type="text" name="upperText" id="upperText" class="input-text" placeholder="Текст над календарем">
 			<button type="button" class="save-btn">Создать ссылку</button>
 		</div>
 	</div>
