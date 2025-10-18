@@ -228,6 +228,21 @@ const createFormForDay = (index) => {
 		chooseColorSelect.add(newOption, undefined)
 	})
 
+	const chooseColorSelectTwo = document.createElement('select')
+	chooseColorSelectTwo.classList.add(`day${index}-color-select2`)
+	chooseColor.append(chooseColorSelectTwo)
+
+	const chooseColorSelectTwoHiddenOption = document.createElement('option')
+	chooseColorSelectTwoHiddenOption.selected = true
+	chooseColorSelectTwoHiddenOption.disabled = true
+	chooseColorSelectTwoHiddenOption.hidden = true
+	chooseColorSelectTwo.append(chooseColorSelectTwoHiddenOption)
+
+	formSelectColorValues.forEach((optionData) => {
+		let newOption = new Option(optionData.text, optionData.value)
+		chooseColorSelectTwo.add(newOption, undefined)
+	})
+
 	const chooseColorDescription = document.createElement('input')
 	chooseColorDescription.setAttribute('type', 'text')
 	chooseColorDescription.setAttribute('placeholder', 'Значение (не обязательно)')
@@ -272,11 +287,13 @@ const createFormForDay = (index) => {
 		chooseCardSelectSecond.append(hiddenOpt)
 
 		chooseColorSelect.value = ''
+		chooseColorSelectTwo.value = ''
 		chooseColorDescription.value = ''
 		dayInputTextarea.value = ''
 
 		const dayCell = document.getElementById(`day${index}`)
 		dayCell.style.removeProperty('box-shadow')
+		dayCell.children[0].style.boxShadow = `0 0 7px 5px #ffffff`
 
 		const cardBlock = dayCell.children[1]
 		cardBlock.innerHTML = ''
@@ -287,6 +304,7 @@ const createFormForDay = (index) => {
 		const cardType = chooseCardSelectFirst.value
 		const cardName = chooseCardSelectSecond.value
 		const color = chooseColorSelect.value
+		const colorTwo = chooseColorSelectTwo.value
 
 		if (!color) {
 			alert(`Нужно выбрать цвет`)
@@ -309,6 +327,7 @@ const createFormForDay = (index) => {
 
 		const dayCell = document.getElementById(`day${index}`)
 		dayCell.style.boxShadow = `0 0 12px 3px #${color}`
+		if (colorTwo) dayCell.children[0].style.boxShadow = `0 0 7px 5px #${colorTwo}`
 
 		const cardBlock = dayCell.children[1]
 		cardBlock.innerHTML = ''
@@ -341,6 +360,7 @@ const createCellForDay = (dateNum) => {
 	newCellInfo.classList.add('calendar__dates_cell__info')
 	newCell.append(newCellInfo)
 	newCellInfo.innerText = dateNum
+	newCellInfo.style.boxShadow = `0 0 7px 5px #ffffff`
 
 	const newCellCard = document.createElement('div')
 	newCellCard.classList.add('calendar__dates_cell__card')
@@ -463,7 +483,9 @@ saveBtnGlobal.addEventListener('click', () => {
 			text
 		})
 	}
+
 	if (!isFail) saveLayout(data)
+	isFail = false
 })
 
 monthCardSelect.addEventListener('change', () => {
