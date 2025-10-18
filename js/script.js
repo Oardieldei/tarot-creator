@@ -448,11 +448,13 @@ saveBtnGlobal.addEventListener('click', () => {
 		const cardTypeSelect = allForms[i].querySelector('select[class*="-card-select"]:not([class*="-card-select-2"])')
 		const cardNameSelect = allForms[i].querySelector(`select[class*="-card-select-2"]`)
 		const colorSelect = allForms[i].querySelector(`select[class*="-color-select"]`)
+		const colorSelectTwo = allForms[i].querySelector(`select[class*="-color-select2"]`)
 		const textArea = allForms[i].querySelector('textarea')
 
 		const cardType = cardTypeSelect.value
 		const cardName = cardNameSelect.value
 		const color = colorSelect.value
+		const colorTwo = colorSelectTwo.value
 		const text = textArea.value.trim()
 
 		if (!cardType) {
@@ -479,6 +481,7 @@ saveBtnGlobal.addEventListener('click', () => {
 			cardType,
 			cardName,
 			color,
+			colorTwo,
 			description: allForms[i].querySelector('input[type="text"]').value.trim(),
 			text
 		})
