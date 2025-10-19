@@ -1,19 +1,19 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    doc,
-    getDoc
-  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
+	getFirestore,
+	collection,
+	addDoc,
+	doc,
+	getDoc
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCStY_szTbzOfvlYnq32tqmgPAv-aRHPcQ",
-  authDomain: "tarot-layouts.firebaseapp.com",
-  projectId: "tarot-layouts",
-  storageBucket: "tarot-layouts.firebasestorage.app",
-  messagingSenderId: "698149348927",
-  appId: "1:698149348927:web:7b33f5a55dda914ab6fa8a"
+	apiKey: "AIzaSyCStY_szTbzOfvlYnq32tqmgPAv-aRHPcQ",
+	authDomain: "tarot-layouts.firebaseapp.com",
+	projectId: "tarot-layouts",
+	storageBucket: "tarot-layouts.firebasestorage.app",
+	messagingSenderId: "698149348927",
+	appId: "1:698149348927:web:7b33f5a55dda914ab6fa8a"
 }
 
 const app = initializeApp(firebaseConfig)
@@ -25,13 +25,13 @@ const choosenMonthInput = choosenDate.children[0].children[1]
 const choosenYearInput = choosenDate.children[1].children[1]
 const choosenDateBtn = choosenDate.children[2]
 const dayFormContainer = document.querySelector('.days-input')
-const monthCardSelect = document.querySelector('.month-card-select')
-const monthCardSelect2 = document.querySelector('.month-card-select-2')
 const bodyItem = document.querySelector('.body')
 const choseThemeSelect = document.querySelector('.chose-theme-select')
 const choseDeckSelect = document.querySelector('.chose-deck-select')
+const monthCardItem = document.querySelector('.month-card')
 
 let currentDeck = '1001-nights'
+let isMonthFormReal = false
 
 const formSelectFirstValues = [
 	{ text: "Старший аркан", value: "sa" },
@@ -293,6 +293,7 @@ const createFormForDay = (index) => {
 
 		const dayCell = document.getElementById(`day${index}`)
 		dayCell.style.removeProperty('box-shadow')
+		dayCell.style.removeProperty('background-color')
 		dayCell.children[0].style.boxShadow = `0 0 7px 5px #ffffff`
 
 		const cardBlock = dayCell.children[1]
@@ -341,6 +342,250 @@ const createFormForDay = (index) => {
 
 		hideForm(index)
 	})
+}
+
+const createFormForMonth = () => {
+	const newFullForm = document.createElement('div')
+	newFullForm.classList.add('day-input')
+	newFullForm.classList.add(`month-full-wow-input`)
+	dayFormContainer.append(newFullForm)
+
+	const chooseCard = document.createElement('div')
+	chooseCard.classList.add('day-input__choose-card')
+	newFullForm.append(chooseCard)
+
+	const chooseCardText = document.createElement('p')
+	chooseCardText.classList.add('day-input__choose-card_p')
+	chooseCardText.innerText = 'Карта:'
+	chooseCard.append(chooseCardText)
+
+	const chooseCardSelectFirst = document.createElement('select')
+	chooseCardSelectFirst.classList.add(`month-full-wow-card-select`)
+	chooseCard.append(chooseCardSelectFirst)
+
+	const chooseCardSelectFirstHiddenOption = document.createElement('option')
+	chooseCardSelectFirstHiddenOption.selected = true
+	chooseCardSelectFirstHiddenOption.disabled = true
+	chooseCardSelectFirstHiddenOption.hidden = true
+	chooseCardSelectFirst.append(chooseCardSelectFirstHiddenOption)
+
+	formSelectFirstValues.forEach((optionData) => {
+		let newOption = new Option(optionData.text, optionData.value)
+		chooseCardSelectFirst.add(newOption, undefined)
+	})
+
+	const chooseCardSelectSecond = document.createElement('select')
+	chooseCardSelectSecond.classList.add(`month-full-wow-card-select-2`)
+	chooseCard.append(chooseCardSelectSecond)
+
+	const chooseCardSelectSecondHiddenOption = document.createElement('option')
+	chooseCardSelectSecondHiddenOption.selected = true
+	chooseCardSelectSecondHiddenOption.disabled = true
+	chooseCardSelectSecondHiddenOption.hidden = true
+	chooseCardSelectSecond.append(chooseCardSelectSecondHiddenOption)
+
+	chooseCardSelectFirst.addEventListener('change', (e) => {
+		const currValue = e.target.value
+
+		chooseCardSelectSecond.innerHTML = ''
+
+		const saValues = currValue === 'sa' ? [
+			{ text: "Шут (Дурак)", value: "00-Shut" },
+			{ text: "Маг", value: "01-Mag" },
+			{ text: "Жрица", value: "02-Zhrica" },
+			{ text: "Императрица", value: "03-Imperatrica" },
+			{ text: "Император", value: "04-Imperator" },
+			{ text: "Жрец", value: "05-Zhrec" },
+			{ text: "Влюбленные", value: "06-Vljublennye" },
+			{ text: "Колесница", value: "07-Kolesnica" },
+			{ text: "Справедливость", value: "08-Spravedlivost" },
+			{ text: "Отшельник", value: "09-Otshelnik" },
+			{ text: "Колесо фортуны", value: "10-Koleso-Fortuny" },
+			{ text: "Сила", value: "11-Sila" },
+			{ text: "Повешенный", value: "12-Poveshennyj" },
+			{ text: "Смерть", value: "13-Smert" },
+			{ text: "Умеренность", value: "14-Umerennost" },
+			{ text: "Дьявол", value: "15-Diavol" },
+			{ text: "Башня", value: "16-Bashnja" },
+			{ text: "Звезда", value: "17-Zvezda" },
+			{ text: "Луна", value: "18-Luna" },
+			{ text: "Солнце", value: "19-Solnce" },
+			{ text: "Суд", value: "20-Sud" },
+			{ text: "Мир", value: "21-Mir" }
+		] : [
+			{ text: "Туз", value: "01" },
+			{ text: "2", value: "02" },
+			{ text: "3", value: "03" },
+			{ text: "4", value: "04" },
+			{ text: "5", value: "05" },
+			{ text: "6", value: "06" },
+			{ text: "7", value: "07" },
+			{ text: "8", value: "08" },
+			{ text: "9", value: "09" },
+			{ text: "10", value: "10" },
+			{ text: "Король", value: "korol" },
+			{ text: "Королева", value: "koroleva" },
+			{ text: "Паж", value: "pazh" },
+			{ text: "Рыцарь", value: "rycar" }
+		]
+
+		saValues.forEach((optionData) => {
+			let newOption = new Option(optionData.text, optionData.value)
+			chooseCardSelectSecond.add(newOption, undefined)
+		})
+	})
+
+	const chooseColor = document.createElement('div')
+	chooseColor.classList.add('day-input__choose-color')
+	newFullForm.append(chooseColor)
+
+	const chooseColorText = document.createElement('p')
+	chooseColorText.classList.add('day-input__choose-color_p')
+	chooseColorText.innerText = 'Цвет: '
+	chooseColor.append(chooseColorText)
+
+	const chooseColorSelect = document.createElement('select')
+	chooseColorSelect.classList.add(`month-full-wow-color-select`)
+	chooseColor.append(chooseColorSelect)
+
+	const chooseColorSelectHiddenOption = document.createElement('option')
+	chooseColorSelectHiddenOption.selected = true
+	chooseColorSelectHiddenOption.disabled = true
+	chooseColorSelectHiddenOption.hidden = true
+	chooseColorSelect.append(chooseColorSelectHiddenOption)
+
+	formSelectColorValues.forEach((optionData) => {
+		let newOption = new Option(optionData.text, optionData.value)
+		chooseColorSelect.add(newOption, undefined)
+	})
+
+	const chooseColorSelectTwo = document.createElement('select')
+	chooseColorSelectTwo.classList.add(`month-full-wow-color-select2`)
+	chooseColor.append(chooseColorSelectTwo)
+
+	const chooseColorSelectTwoHiddenOption = document.createElement('option')
+	chooseColorSelectTwoHiddenOption.selected = true
+	chooseColorSelectTwoHiddenOption.disabled = true
+	chooseColorSelectTwoHiddenOption.hidden = true
+	chooseColorSelectTwo.append(chooseColorSelectTwoHiddenOption)
+
+	formSelectColorValues.forEach((optionData) => {
+		let newOption = new Option(optionData.text, optionData.value)
+		chooseColorSelectTwo.add(newOption, undefined)
+	})
+
+	const chooseColorDescription = document.createElement('input')
+	chooseColorDescription.setAttribute('type', 'text')
+	chooseColorDescription.setAttribute('placeholder', 'Значение (не обязательно)')
+	chooseColor.append(chooseColorDescription)
+
+	const dayInputText = document.createElement('div')
+	dayInputText.classList.add('day-input__text')
+	newFullForm.append(dayInputText)
+
+	const dayInputTextP = document.createElement('p')
+	dayInputTextP.classList.add('day-input__text_p')
+	dayInputTextP.innerText = 'Текст:'
+	dayInputText.append(dayInputTextP)
+
+	const dayInputTextarea = document.createElement('textarea')
+	dayInputTextarea.classList.add('day-input__text_full')
+	dayInputTextarea.setAttribute('name', 'day-input__text_full')
+	dayInputTextarea.setAttribute('id', `month-full-wow-text_full`)
+	dayInputText.append(dayInputTextarea)
+
+	const dayInputBtns = document.createElement('div')
+	dayInputBtns.classList.add('day-input__btns')
+	newFullForm.append(dayInputBtns)
+
+	const cancelBtn = document.createElement('button')
+	cancelBtn.setAttribute('type', 'button')
+	cancelBtn.innerText = 'Очистить'
+	dayInputBtns.append(cancelBtn)
+
+	const saveBtn = document.createElement('button')
+	saveBtn.setAttribute('type', 'button')
+	saveBtn.innerText = 'Сохранить'
+	dayInputBtns.append(saveBtn)
+
+	cancelBtn.addEventListener('click', () => {
+		chooseCardSelectFirst.value = ''
+		chooseCardSelectSecond.innerHTML = ''
+		const hiddenOpt = document.createElement('option')
+		hiddenOpt.selected = true
+		hiddenOpt.disabled = true
+		hiddenOpt.hidden = true
+		chooseCardSelectSecond.append(hiddenOpt)
+
+		chooseColorSelect.value = ''
+		chooseColorSelectTwo.value = ''
+		chooseColorDescription.value = ''
+		dayInputTextarea.value = ''
+
+		const dayCell = document.querySelector(`.month-card`)
+		dayCell.style.removeProperty('box-shadow')
+
+		const cardBlock = dayCell.children[0]
+		cardBlock.innerHTML = ''
+
+		const cardBlockText = dayCell.children[1]
+		cardBlockText.innerText = 'Карта месяца'
+
+		dayFormContainer.classList.remove('inputs-active')
+		const currentForm = dayFormContainer.querySelector(`.month-full-wow`)
+		if (currentForm) {
+			currentForm.classList.remove('day_shown')
+		}
+	})
+
+	saveBtn.addEventListener('click', () => {
+		const cardType = chooseCardSelectFirst.value
+		const cardName = chooseCardSelectSecond.value
+		const color = chooseColorSelect.value
+		const colorTwo = chooseColorSelectTwo.value
+
+		if (!color) {
+			alert(`Нужно выбрать цвет`)
+			return
+		}
+
+		if (!cardName) {
+			alert(`Нужно выбрать карту`)
+			return
+		}
+
+		if (!cardType) {
+			alert(`Нужно выбрать карту`)
+			return
+		}
+
+		const cardPath = (cardType === 'sa')
+			? `./img/cards/${currentDeck}/${cardName}.jpg`
+			: `./img/cards/${currentDeck}/${cardType}-${cardName}.jpg`
+
+		const dayCell = document.querySelector(`.month-card`)
+		dayCell.style.boxShadow = `0 0 12px 3px #${color}`
+
+		const cardBlock = dayCell.children[0]
+		cardBlock.innerHTML = ''
+		const img = document.createElement('img')
+		img.src = cardPath
+		img.alt = 'Карта'
+		img.style.width = '100%'
+		img.style.maxHeight = '100%'
+		cardBlock.appendChild(img)
+
+		const cardBlockText = dayCell.children[1]
+		cardBlockText.innerText = ''
+
+		dayFormContainer.classList.remove('inputs-active')
+		const currentForm = dayFormContainer.querySelector(`.month-full-wow`)
+		if (currentForm) {
+			currentForm.classList.remove('day_shown')
+		}
+	})
+
+	isMonthFormReal = true
 }
 
 const createEmptyCellForDay = () => {
@@ -403,6 +648,7 @@ const createCalendar = (y, m) => {
 choosenDateBtn.addEventListener('click', () => {
 	if (isDateReal(choosenYearInput.value, choosenMonthInput.value)) {
 		createCalendar(choosenYearInput.value, choosenMonthInput.value)
+		createFormForMonth()
 	} else {
 		choosenMonthInput.value = ''
 		choosenYearInput.value = ''
@@ -424,16 +670,43 @@ const textIntroItem = document.querySelector('.input-text')
 saveBtnGlobal.addEventListener('click', () => {
 	const month = choosenMonthInput.value
 	const year = choosenYearInput.value
-	const monthCardType = monthCardSelect.value
-	const monthCardName = monthCardSelect2.value
 	const allForms = document.querySelectorAll('.day-input')
+
+	const monthCardInputs = document.querySelector('.month-full-wow-input')
+	const monthCardTypeSelect = monthCardInputs.children[0].children[1]
+	const monthCardNameSelect = monthCardInputs.children[0].children[2]
+	const monthColorSelect = monthCardInputs.children[1].children[1]
+	const monthColorSelectTwo = monthCardInputs.children[1].children[2]
+	const monthColorDescription = monthCardInputs.children[1].children[3]
+	const monthTextArea = monthCardInputs.children[2]
+
+	const monthCardType = monthCardTypeSelect.value
+	const monthCardName = monthCardNameSelect.value
+	const monthColor = monthColorSelect.value
+	const monthColorTwo = monthColorSelectTwo.value
+	const monthDescription = monthColorDescription.value
+	const monthText = monthTextArea.value
+
+	if (!monthCardInputs || !monthCardType || !monthCardName) {
+		alert('Не выбрана карта месяца!')
+		return
+	}
+
+	if (!monthColor) {
+		alert('Не выбран цвет энергий месяца!')
+		return
+	}
 
 	const data = {
 		month: choosenMonthInput.value,
 		year: choosenYearInput.value,
 		monthCard: {
 			cardType: monthCardType,
-			cardName: monthCardName
+			cardName: monthCardName,
+			color: monthColor,
+			colorTwo: monthColorTwo,
+			description: monthDescription,
+			text: monthText
 		},
 		days: [],
 		theme: choseThemeSelect.value,
@@ -492,60 +765,6 @@ saveBtnGlobal.addEventListener('click', () => {
 	isFail = false
 })
 
-monthCardSelect.addEventListener('change', () => {
-	monthCardSelect2.innerHTML = ''
-
-	const saValues = [
-		{ text: "Шут (Дурак)", value: "00-Shut" },
-		{ text: "Маг", value: "01-Mag" },
-		{ text: "Жрица", value: "02-Zhrica" },
-		{ text: "Императрица", value: "03-Imperatrica" },
-		{ text: "Император", value: "04-Imperator" },
-		{ text: "Жрец", value: "05-Zhrec" },
-		{ text: "Влюбленные", value: "06-Vljublennye" },
-		{ text: "Колесница", value: "07-Kolesnica" },
-		{ text: "Справедливость", value: "08-Spravedlivost" },
-		{ text: "Отшельник", value: "09-Otshelnik" },
-		{ text: "Колесо фортуны", value: "10-Koleso-Fortuny" },
-		{ text: "Сила", value: "11-Sila" },
-		{ text: "Повешенный", value: "12-Poveshennyj" },
-		{ text: "Смерть", value: "13-Smert" },
-		{ text: "Умеренность", value: "14-Umerennost" },
-		{ text: "Дьявол", value: "15-Diavol" },
-		{ text: "Башня", value: "16-Bashnja" },
-		{ text: "Звезда", value: "17-Zvezda" },
-		{ text: "Луна", value: "18-Luna" },
-		{ text: "Солнце", value: "19-Solnce" },
-		{ text: "Суд", value: "20-Sud" },
-		{ text: "Мир", value: "21-Mir" }
-	]
-
-	const minorValues = [
-		{ text: "Туз", value: "01" },
-		{ text: "2", value: "02" },
-		{ text: "3", value: "03" },
-		{ text: "4", value: "04" },
-		{ text: "5", value: "05" },
-		{ text: "6", value: "06" },
-		{ text: "7", value: "07" },
-		{ text: "8", value: "08" },
-		{ text: "9", value: "09" },
-		{ text: "10", value: "10" },
-		{ text: "Король", value: "korol" },
-		{ text: "Королева", value: "koroleva" },
-		{ text: "Паж", value: "pazh" },
-		{ text: "Рыцарь", value: "rycar" }
-	]
-
-	const selectedType = monthCardSelect.value
-	const options = selectedType === 'sa' ? saValues : minorValues
-
-	options.forEach(opt => {
-		const option = new Option(opt.text, opt.value)
-		monthCardSelect2.appendChild(option)
-	})
-})
-
 const wdayWrapper = document.getElementById("what-day__wrapper")
 const wdayToggle = wdayWrapper.querySelector(".what-day__toggle")
 const wdayInput = document.getElementById("wday-input")
@@ -600,3 +819,28 @@ const changeDeckVision = (deck) => {
 		imgEl.src = `./img/cards/${deck}/${fileName}`
 	})
 }
+
+monthCardItem.addEventListener('click', () => {
+	if (isMonthFormReal) {
+		dayFormContainer.classList.add('inputs-active')
+		const allForms = dayFormContainer.querySelectorAll('.day-input')
+		allForms.forEach(form => form.classList.remove('day_shown'))
+
+		const currentForm = dayFormContainer.querySelector(`.month-full-wow-input`)
+		if (currentForm) {
+			currentForm.classList.add('day_shown')
+
+			currentForm.style.top = '0px'
+			const formHeight = currentForm.offsetHeight
+			const scrollY = window.scrollY
+			const windowHeight = window.innerHeight
+
+			if (scrollY + formHeight > scrollY + windowHeight) {
+				const adjustedTop = Math.max(0, scrollY + windowHeight - formHeight)
+				currentForm.style.top = adjustedTop + 'px'
+			} else {
+				currentForm.style.top = scrollY + 'px'
+			}
+		}
+	}
+})
