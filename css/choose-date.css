@@ -227,4 +227,8 @@
 	.chose-date {
 		width: 100%;
 	}
+
+	.month-card {
+		order: 3;
+	}
 }

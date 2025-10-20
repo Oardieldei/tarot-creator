@@ -569,12 +569,6 @@ const createFormForMonth = () => {
 		const cardType = chooseCardSelectFirst.value
 		const cardName = chooseCardSelectSecond.value
 		const color = chooseColorSelect.value
-		const colorTwo = chooseColorSelectTwo.value
-
-		if (!color) {
-			alert(`Нужно выбрать цвет`)
-			return
-		}
 
 		if (!cardName) {
 			alert(`Нужно выбрать карту`)
@@ -583,6 +577,11 @@ const createFormForMonth = () => {
 
 		if (!cardType) {
 			alert(`Нужно выбрать карту`)
+			return
+		}
+
+		if (!color) {
+			alert(`Нужно выбрать цвет`)
 			return
 		}
 
