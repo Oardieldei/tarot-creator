@@ -243,6 +243,19 @@ const createFormForDay = (index) => {
 		chooseColorSelectTwo.add(newOption, undefined)
 	})
 
+	let clearOption = new Option('Убрать', 'clear')
+	chooseColorSelectTwo.add(clearOption, undefined)
+
+	chooseColorSelectTwo.addEventListener('change', (e) => {
+		if (e.target.value === 'clear') {
+			chooseColorSelectTwoHiddenOption.selected = true
+
+			const dayCell = document.getElementById(`day${index}`)
+			dayCell.style.removeProperty('background-color')
+			dayCell.children[0].style.boxShadow = `0 0 7px 5px #ffffff`
+		}
+	})
+
 	const chooseColorDescription = document.createElement('input')
 	chooseColorDescription.setAttribute('type', 'text')
 	chooseColorDescription.setAttribute('placeholder', 'Значение (не обязательно)')
@@ -307,11 +320,6 @@ const createFormForDay = (index) => {
 		const color = chooseColorSelect.value
 		const colorTwo = chooseColorSelectTwo.value
 
-		if (!color) {
-			alert(`Нужно выбрать цвет`)
-			return
-		}
-
 		if (!cardName) {
 			alert(`Нужно выбрать карту`)
 			return
@@ -319,6 +327,11 @@ const createFormForDay = (index) => {
 
 		if (!cardType) {
 			alert(`Нужно выбрать карту`)
+			return
+		}
+
+		if (!color) {
+			alert(`Нужно выбрать цвет`)
 			return
 		}
 
@@ -478,6 +491,20 @@ const createFormForMonth = () => {
 	chooseColorDescription.setAttribute('type', 'text')
 	chooseColorDescription.setAttribute('placeholder', 'Значение (не обязательно)')
 	chooseColor.append(chooseColorDescription)
+
+	let clearOption = new Option('Убрать', 'clear')
+	chooseColorSelectTwo.add(clearOption, undefined)
+
+	chooseColorSelectTwo.addEventListener('change', (e) => {
+		if (e.target.value === 'clear') {
+			chooseColorSelectTwoHiddenOption.selected = true
+
+			const dayCell = document.querySelector(`.month-card`)
+			dayCell.style.removeProperty('background-color')
+			dayCell.children[0].removeProperty('box-shadow')
+		}
+	})
+
 
 	const dayInputText = document.createElement('div')
 	dayInputText.classList.add('day-input__text')
@@ -678,7 +705,7 @@ saveBtnGlobal.addEventListener('click', () => {
 	const monthColorSelect = monthCardInputs.children[1].children[1]
 	const monthColorSelectTwo = monthCardInputs.children[1].children[2]
 	const monthColorDescription = monthCardInputs.children[1].children[3]
-	const monthTextArea = monthCardInputs.children[2]
+	const monthTextArea = monthCardInputs.children[2].children[1]
 
 	const monthCardType = monthCardTypeSelect.value
 	const monthCardName = monthCardNameSelect.value
