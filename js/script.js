@@ -6,6 +6,7 @@ import {
 	doc,
 	getDoc
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"
 
 const firebaseConfig = {
 	apiKey: "AIzaSyCStY_szTbzOfvlYnq32tqmgPAv-aRHPcQ",
@@ -18,6 +19,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
+const auth = getAuth()
+const provider = new GoogleAuthProvider()
 
 const calendarDates = document.querySelector('.calendar__dates')
 const choosenDate = document.querySelector('.chose-date')
@@ -671,10 +674,24 @@ const createCalendar = (y, m) => {
 	createEmptyCellsAfter(y, m)
 }
 
-choosenDateBtn.addEventListener('click', () => {
+choosenDateBtn.addEventListener('click', async () => {
 	if (isDateReal(choosenYearInput.value, choosenMonthInput.value)) {
-		createCalendar(choosenYearInput.value, choosenMonthInput.value)
-		createFormForMonth()
+		if (auth.currentUser) {
+			createCalendar(choosenYearInput.value, choosenMonthInput.value)
+			createFormForMonth()
+		} else {
+			try {
+				const result = await signInWithPopup(auth, provider)
+				const uid = result.user.uid
+				alert(`Ваш UID: ${uid}`)
+
+				createCalendar(choosenYearInput.value, choosenMonthInput.value)
+				createFormForMonth()
+			} catch (error) {
+				console.error("Ошибка входа:", error)
+				alert("Вход не выполнен: " + error.message)
+			}
+		}
 	} else {
 		choosenMonthInput.value = ''
 		choosenYearInput.value = ''
