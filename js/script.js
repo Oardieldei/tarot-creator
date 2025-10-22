@@ -685,7 +685,6 @@ async function saveLayout(data) {
 	const docRef = await addDoc(collection(db, "layouts"), data)
 	const layoutId = docRef.id
 	const link = `https://oardieldei.github.io/tarot-viewer/?id=${layoutId}`
-	console.log(`Ссылка на расклад: ${link}`)
 	window.open(link, '_blank')
 }
 
