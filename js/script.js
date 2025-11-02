@@ -1,3 +1,4 @@
+/*
 import { firebaseConfig } from './firebase.js'
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"
 import {
@@ -10,6 +11,7 @@ import {
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
+*/
 
 const calendarDates = document.querySelector('.calendar__dates')
 const choosenDate = document.querySelector('.chose-date')
@@ -812,6 +814,17 @@ wdayBtn.addEventListener('click', () => {
 		wdayInput.value = ""
 	}
 })
+
+const settingsWrapper = document.getElementById("settings__wrapper")
+const settingsToggle = settingsWrapper.querySelector(".settings__toggle")
+const settingsBtnSave = settingsWrapper.querySelector(".settings__btn_save")
+const settingsBtnLoad = settingsWrapper.querySelector(".settings__btn_load")
+
+settingsToggle.addEventListener("click", () => {
+	const isOpen = settingsWrapper.getAttribute("data-state") === "open"
+	settingsWrapper.setAttribute("data-state", isOpen ? "closed" : "open")
+})
+
 
 const themesRemove = () => {
 	const classesToRemove = Array.from(bodyItem.classList)
