@@ -76,7 +76,7 @@
   border: none;
   cursor: pointer;
   padding: 3px;
-	transition: background 0.3s ease;
+	transition: background 0.3s ease, transform 0.3s ease;
 	border-radius: 5px;
 }
 
@@ -84,4 +84,5 @@
 .settings__btn_load:hover {
 	cursor: pointer;
 	background: #e4e4e4;
+	transform: scale(1.1, 1.1);
 }
