@@ -992,6 +992,9 @@ settingsBtnLoad.addEventListener('click', () => {
 
 			monthCardTypeSelect.value = cardType
 			monthCardNameSelect.value = cardName
+
+			const cardBlockText = dayCell.children[1]
+			cardBlockText.innerText = ''
 		}
 
 		if (color !== '') {
@@ -1003,9 +1006,6 @@ settingsBtnLoad.addEventListener('click', () => {
 
 		if (description !== '') monthColorDescription.value = description
 		if (fullText !== '') monthTextArea.value = fullText
-
-		const cardBlockText = dayCell.children[1]
-		cardBlockText.innerText = ''
 	}
 	loadMonthCard()
 
