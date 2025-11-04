@@ -995,6 +995,12 @@ settingsBtnLoad.addEventListener('click', () => {
 
 			const cardBlockText = dayCell.children[1]
 			cardBlockText.innerText = ''
+		} else {
+			const cardBlock = dayCell.children[0]
+			cardBlock.innerHTML = ''
+			const cardBlockText = dayCell.children[1]
+			cardBlockText.innerText = 'Карта месяца'
+			dayCell.style.removeProperty('box-shadow')
 		}
 
 		if (color !== '') {
